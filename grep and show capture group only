@@ -1,0 +1,2 @@
+grep and show capture group only
+echo "foo 'bar'" | grep -Po "(?<=')[^']+(?=')"

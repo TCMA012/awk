@@ -1,0 +1,5 @@
+Print column separated by comma using Awk
+awk add column
+
+cd /media/tcma/SeagateBackupPlusDrive/awk
+awk -F',' '{print $3}' Propertytax.csv | awk '{SUM += $0} END {print SUM}'
