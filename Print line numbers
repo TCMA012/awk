@@ -1,0 +1,23 @@
+cd /media/tcma/SeagateBackupPlusDrive
+cd angular15/
+
+    Print line numbers
+    NR starts at 1
+
+awk '{print NR, $0}' "Learning Angular Chapters"
+
+    Print line numbers starting at zero
+
+awk '{print NR-1 "," $0}'
+
+
+
+awk 'NR>6&&NR<14&&/word/'
+
+
+
+cdm
+cd angularOther/sandroroth
+
+awk 'NR >= 472 && NR <= 9906' 'Angular for Beginners Course -Full Front End Tutorial with TypeScript All' > 'Angular for Beginners Course -Full Front End Tutorial with TypeScript'
+

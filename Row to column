@@ -1,0 +1,29 @@
+awk Row to column
+
+ and column to row using awk
+
+cd /media/tcma/SeagateBackupPlusDrive/angularTypedForm
+
+awk '{printf("%s ", $0)}' ControlValueAccessor
+
+
+
+Row to column
+awk 1 RS=" |\n" file1  # gnu awk version
+awk '{for (i=1;i<=NF;i++) print $i}' file1 # portable version
+
+
+awk column to row
+awk '{printf "%s" (NR%3==0?RS:FS),$1}' file2
+
+
+printf "%s" # print pararameter #1 ($1)
+NR%3==0?"RS:FS # add extra formatting. Test if line is number 3. If its not, use FS (a blank space), if it is use RS, a new line.
+So this adjust the next parameter after every 3 line.
+
+
+
+Don't forget the comma separating the format from the data. It's cleaner to use FS and RS and switch the order saves the explicit comparison 
+awk '{printf "%s%s",$0,(NR%3?FS:RS)}'
+awk '{printf "%s%s",$0,(NR%7?FS:RS)}'
+

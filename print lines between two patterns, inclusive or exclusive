@@ -1,0 +1,33 @@
+print lines between two patterns, inclusive or exclusive
+awk is able to process from start pattern until end pattern
+awk start pattern  end pattern inclusive exclusive
+
+https://stackoverflow.com/questions/38972736/how-to-print-lines-between-two-patterns-inclusive-or-exclusive-in-sed-awk-or
+
+Print lines between PAT1 and PAT2 - not including PAT1 and PAT2
+
+awk '/PAT1/{flag=1; next} /PAT2/{flag=0} flag' file
+
+Print lines between PAT1 and PAT2 - including PAT1
+
+awk '/PAT1/{flag=1} /PAT2/{flag=0} flag' file
+
+Print lines between PAT1 and PAT2 - including PAT2
+
+awk 'flag; /PAT1/{flag=1} /PAT2/{flag=0}' file
+
+Print lines between PAT1 and PAT2 - excluding lines from the last PAT1 to the end of file if no other PAT2 occurs
+
+This is based on a solution by Ed Morton.
+
+awk 'flag{
+        if (/PAT2/)
+           {printf "%s", buf; flag=0; buf=""}
+        else
+            buf = buf $0 ORS
+     }
+     /PAT1/ {flag=1}' file
+
+As a one-liner:
+
+awk 'flag{ if (/PAT2/){printf "%s", buf; flag=0; buf=""} else buf = buf $0 ORS}; /PAT1/{flag=1}' file

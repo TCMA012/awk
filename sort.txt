@@ -1,0 +1,6 @@
+sort -t, -nk3 user.csv
+
+where
+-t, - defines your delimiter as ,.
+-n - gives you numerical sort. Added since you added it in your attempt. If your user field is text only then you dont need it.
+-k3 - defines the field (key). user is the third field.

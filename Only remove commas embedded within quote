@@ -1,0 +1,29 @@
+Only remove commas embedded within quotes in a comma delimited file
+a input file delimited with commas (,). There are some fields enclosed in double quotes that are having a comma in them.
+123,"ABC, DEV 23",345,534.202,NAME
+remove all the comma's occuring within inside the double quotes and the double quotes as well.
+
+
+
+
+If the quotes are balanced, you will want to remove commas between every other quote, this can be expressed in awk like this:
+
+awk -F'"' -v OFS='' '{ for (i=2; i<=NF; i+=2) gsub(",", "", $i) } 1' infile
+
+Output:
+
+123,ABC DEV 23,345,534.202,NAME
+
+Explanation
+
+The -F" makes awk separate the line at the double-quote signs, which means every other field will be the inter-quote text. The for-loop runs gsub, short for globally substitute, on every other field, replacing comma (",") with nothing (""). The 1 at the end invokes the default code-block: { print $0 }.
+
+
+
+
+
+this approach has a problem: sometimes the csv has rows that span several lines, such as: prefix,"something,otherthing[newline]something , else[newline]3rdline,and,things",suffix (ie: several lines, and nested "," anywhere within a multi-line double-quoting : the whole "...." part should be rejoined and inside , should be replaced/removed ... ) : your script won't see pairs of double quotes in that case, and it's not really easy to solve (need to "rejoin" lines that are in an "open" (ie, odd-numbered) double quote...+take extra care if there is also an escaped \" inside the string)
+
+
+
+I often like to keep the commas but still want to delimit. Instead, I switched the commas outside the quotes to pipes, converting the csv to a psv file: awk -F'"' -v OFS='"' '{ for (I=1; i<=NF; i+=2) gsub(",", "|", $i) } 1' infile 

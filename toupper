@@ -1,0 +1,3 @@
+awk '{ print toupper($0) }' <<< "your string"
+awk '{ print toupper($0) }' <<< "indexjavascript"
+awk '{ print toupper($0) }' <<< "indexTypescript"

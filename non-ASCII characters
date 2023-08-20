@@ -1,0 +1,24 @@
+remove non-ASCII characters
+cd /media/tcma/SeagateBackupPlusDrive/Ottawa
+
+grep --color='auto' -P -n '[^\x00-\x7F]' 外滩壹号
+grep -P -n '[^\x00-\x7F]' 外滩壹号
+grep --color='auto' -P -n "[^[:ascii:]]" 外滩壹号
+
+
+
+awk '/[^\x00-\x7F]/' 外滩壹号
+
+awk '$2 ~/[^\x00-\x7F]/ { print $2 }' 外滩壹号All > 外滩壹号
+
+???
+? grep -c -P -n "[\x00-\x08\x0E-\x1F\x80-\xFF]" 外滩壹号
+
+awk '/[^[:ascii:]]/ { print }' 外滩壹号
+???
+
+remove Japanese characters regex
+/[一-龠]+|[ぁ-ゔ]+|[ァ-ヴー]+|[a-zA-Z0-9]+|[ａ-ｚＡ-Ｚ０-９]+|[々〆〤ヶ]+/u
+/[一-龠]+|[ぁ-ゔ]+|[ァ-ヴー]+|[々〆〤ヶ]+/u
+
+sed 's#[一-龠]+|[ぁ-ゔ]+|[ァ-ヴー]+|[々〆〤ヶ]+##g'

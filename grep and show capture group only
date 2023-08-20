@@ -1,2 +1,19 @@
 grep and show capture group only
 echo "foo 'bar'" | grep -Po "(?<=')[^']+(?=')"
+
+
+echo 'example2.component.ts:42 I get next value of count1 0
+example2.component.ts:16 count1: 0
+core.mjs:25537 Angular is running in development mode.
+example2.component.ts:33 I get next value of count 1
+example2.component.ts:42 I get next value of count1 1
+example2.component.ts:20 count1: 1
+example2.component.ts:51 I get next value count2 1
+example2.component.ts:20 count2: 1
+example2.component.ts:53 finalize count2
+example2.component.ts:35 finalize count
+example2.component.ts:44 finalize count1' | grep -v "Angular is running" | grep -Eo " (.*)" | sed 's# ##'
+
+﻿
+
+

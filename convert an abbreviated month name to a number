@@ -1,0 +1,34 @@
+convert an abbreviated month name to a number in awk
+
+$ echo "Feb" | awk '{printf "%02d\n",(index("JanFebMarAprMayJunJulAugSepOctNovDec",$0)+2)/3}'
+02
+
+$ echo "May" | awk '{printf "%02d\n",(index("JanFebMarAprMayJunJulAugSepOctNovDec",$0)+2)/3}'
+05
+
+
+
+format date field
+echo 9/8/2013 | awk -F/ '{printf "%s%02s%02s\n", $3, $2, $1}'
+
+echo 3/27/2022 | awk -F/ '{printf "%s%02s%02s\n", $3, $2, $1}'
+echo 3/27/2022 | awk -F/ '{printf "%s%02s%02s\n", $3, $1, $2}'
+echo 3/27/2022 | awk -F/ '{printf "%s-%02s-%02s\n", $3, $1, $2}'
+echo 3/27/2022 | awk -F/ '{printf "%s-%02d-%02s\n", $3, $1, $2}'
+echo 3/27/2022 | awk -F/ '{printf "%s-%02d-%02d\n", $3, $1, $2}'
+
+
+
+echo 09-12:36:10 | awk -F '-' -v date="$(date +"-%b-%Y " )" '{ print $1date$2}'
+
+month in upper case:
+echo 09-12:36:10 | awk -F '-' -v date="$(date +"-%b-%Y " )" '{ print toupper($1date$2)}'
+
+
+
+https://www.unix.com/shell-programming-and-scripting/221517-awk-convert-date-format.html
+
+
+
+
+awk -F, '{split($3,a,"/"); $3=a[3]"/"a[1]"/"a[2]}1' OFS=,  input.csv

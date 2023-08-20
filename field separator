@@ -1,0 +1,39 @@
+awk -F',' '{print $3}' myfile.txt
+
+-F use , as the field separator.
+
+echo "water, non-perishable food, a crank or battery-powered flashlight and radio, a first aid kit, extra keys" | awk -F',' '{print $0}'
+awk -F "," '{ print $2}'
+
+ awk 1 RS=" |\n"
+
+
+echo "water, non-perishable food, a crank or battery-powered flashlight and radio, a first aid kit, extra keys" | awk 'BEGIN { OFS = "\n"; ORS = "\n\n" } { print $1, $2 }' 
+
+echo "water, non-perishable food, a crank or battery-powered flashlight and radio, a first aid kit, extra keys" | awk  -F',' 'BEGIN { OFS = "\n"; ORS = "\n\n" } { print $1, $2 }' 
+
+echo "water, non-perishable food, a crank or battery-powered flashlight and radio, a first aid kit, extra keys" | awk  -F',' 'BEGIN { OFS = "\n"; ORS = "\n\n" }'
+
+echo "water, non-perishable food, a crank or battery-powered flashlight and radio, a first aid kit, extra keys" | awk  -F',' 
+
+echo "water, non-perishable food, a crank or battery-powered flashlight and radio, a first aid kit, extra keys" | awk  -F',' 'BEGIN { OFS = "\n"; ORS = "\n\n" } {printf "%s%s",$0,(NR%7?FS:RS)}'
+
+echo "water, non-perishable food, a crank or battery-powered flashlight and radio, a first aid kit, extra keys" | awk  -F',' '{printf "%s%s",$0,(NR%7?FS:RS)}'
+
+
+
+
+
+awk 'BEGIN { OFS = ";"; ORS = "\n\n" }
+
+echo "water, non-perishable food, a crank or battery-powered flashlight and radio, a first aid kit, extra keys" | awk 'BEGIN { ORS = "\n\n" } { print $1, $2 }' 
+
+echo "water, non-perishable food, a crank or battery-powered flashlight and radio, a first aid kit, extra keys" | awk 'BEGIN { ORS = "\n\n" } {printf "%s%s",$0,(NR%7?FS:RS)}'
+
+
+
+awk '{printf "%s%s",$0,(NR%7?FS:RS)}'
+
+
+
+awk print all

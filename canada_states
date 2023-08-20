@@ -1,0 +1,12 @@
+https://gist.github.com/pbojinov/a87adf559d2f7e81d86ae67e7bd883c7
+cd /media/tcma/SeagateBackupPlusDrive/angularTypedForm
+cd forms/repo2/states_titlecasestates_json
+
+sub(/regexp/, replacement, target)
+sub(/\.$/, replacement, target)
+
+awk '{print $0}' canada_states_titlecase.json
+
+awk '{sub(/abbreviation/, "code"); print $0}' canada_states_titlecase.json > states.ts
+
+cp states.ts /media/tcma/SeagateBackupPlusDrive/angularTypedForm/forms/repo2/nested-reusable-form/master/nested-reusable-form-master/src/app/.

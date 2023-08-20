@@ -1,0 +1,51 @@
+Remove the third and fourth fields of the matched line
+
+peter.ng70@gmail.com
+https://community.unix.com/c/shell-programming-and-scripting/20
+
+How to remove the third and fourth fields of the matched line?
+The match string is a three-letter month ("Jan", "Feb", ..., "Dec")
+
+test.txt:
+```
+on Feb 4, 2022
+Jan 29 Jan 31 Amazon.ca*D36F50FY3 AMAZON.CA ON 21.79
+Feb 03 Feb 04 Amazon.ca*493EF9T53 AMAZON.CA ON 19.88
+```
+
+Expected output:
+```
+on Feb 4, 2022
+Jan 29 Amazon.ca*D36F50FY3 AMAZON.CA ON 21.79
+Feb 03 Amazon.ca*493EF9T53 AMAZON.CA ON 19.88
+```
+
+I tried:
+```
+awk '$1 ~ /Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec/ {
+  sub($3, "")
+  sub($4, "")
+  print
+} ' test.txt
+```
+
+
+cd /media/tcma/SeagateBackupPlusDrive/
+cd awk
+
+
+
+
+awk '$1 ~ /^(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)$/ {
+  $3=$4= ""
+}1' test.txt
+
+but it'll leave extra separators.
+One alternative could be:
+
+awk '$1 ~ /^(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)$/ {
+  #$3=$4= ""
+  sub (FS "*" $3 FS "*" $4,"")
+}1' test.txt
+
+There are other alternatives based on how diligent/elaborate you want to be and how potentially different your input could be, but see if it it fits

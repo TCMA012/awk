@@ -1,0 +1,6 @@
+range expression and then later on switch to using a variable..
+https://stackoverflow.com/questions/23934486/is-a-start-end-range-expression-ever-useful-in-awk
+
+aside from the pure range-only situations is if you want to print a match, but only if it lies in a certain range. Also because it is immediately obvious what it does.
+
+awk '/start/,/end/{if(/ppp/)print}' file
