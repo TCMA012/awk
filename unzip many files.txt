@@ -1,0 +1,35 @@
+unzip many files
+unzip multiple / many files
+C:\Angular15\WA3281-REL_1_3-Student\WA3281-REL_1_3-Supporting\LabFiles\Solutions
+cd C:/Angular15/WA3281-REL_1_3-Student/WA3281-REL_1_3-Supporting/LabFiles/Solutions
+
+
+	use the -o option to overwrite files:
+unzip -o '*.zip'
+
+-f  freshen existing files, create none
+-n  never overwrite existing files         
+-q  quiet mode (-qq => quieter)
+-o  overwrite files WITHOUT prompting    
+-d  path where you want files
+
+unzip '*.zip'
+
+unzip \*.zip
+
+
+
+for z in *.zip; do unzip "$z" -d "${z%.*}"; done
+
+
+
+
+bash for unzip basename
+
+
+	decrypting multiple encrypted zipfile
+for z in *.zip; do unzip -P 'my_password_here' "$z"; done
+
+
+
+unzip Lab07.zip -d Lab07

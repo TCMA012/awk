@@ -1,0 +1,16 @@
+extract-file-basename-without-path-and-extension-in-bash
+You don't have to call the external basename command. Instead, you could use the following commands:
+
+$ s=/the/path/foo.txt
+$ echo "${s##*/}"
+foo.txt
+
+$ s=${s##*/}
+$ echo "${s%.txt}"
+foo
+$ echo "${s%.*}"
+
+
+f=Lab11.zip
+echo "${f%.*}"
+Lab11
