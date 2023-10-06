@@ -1,0 +1,7 @@
+Print the second line before the matched line
+awk print last 3 lines match
+https://community.unix.com/t/print-the-second-line-before-the-matched-line/390384
+cd C:/angularCRA
+awk '/error|start|done/ {print t} {t = s; s = $0}' in
+awk '/EXPLORATION|IN PROGRESS|Early Adopter|COMPLETED|Pilot|ON HOLD/ {print t} {t = s; s = $0}' applications2023.txt
+

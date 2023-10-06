@@ -1,0 +1,51 @@
+delete subfolders without deleting parent folder
+
+rm -rf /config/filegroups/*
+
+
+
+If you want to delete only directories (and symlinks to directories), leaving any files in /config/filegroups untouched, you can use a trailing slash:
+
+rm -rf /config/filegroups/*/
+
+
+
+If you want to delete directories with names beginning with a . as well, assuming you have a fairly recent bash, you should use the dotglob shell option:
+
+shopt -s dotglob
+rm -rf /config/filegroups/*/
+shopt -u dotglob
+
+
+
+find /config/filegroups/ -maxdepth 1 -mindepth 1 -type d -exec rm -rf {} \;
+
+
+
+
+This will delete all files and directories under /config/filegroups including "hidden" files and directories (names starting with .).
+
+find /config/filegroups -mindepth 1 -maxdepth 1 | xargs rm -rf
+
+
+
+If the file or directory names contain spaces you have to do it like this:
+
+find /config/filegroups -mindepth 1 -maxdepth 1 -print0 | xargs -0 rm -rf
+
+
+
+Bonus: you can first check what is going to be deleted like this:
+
+find /config/filegroups -mindepth 1 -maxdepth 1
+
+
+
+If you want to keep certain files or directories you can do it like this:
+
+find /config/filegroups -mindepth 1 -maxdepth 1 -not -name "keep"
+
+=
+
+cd C:/angulartraining_alcfeoh-main
+find . -maxdepth 2 -mindepth 2 | xargs rm -rf

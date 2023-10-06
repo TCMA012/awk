@@ -1,0 +1,26 @@
+sed to replace regex capture group
+
+sed -e 's###g'
+
+sed -E "s/(.*)\.png/\/full\/path\/\1/g" <<< "lolsed_bulsh.png"
+It prints:
+
+/full/path/lolsed_bulsh
+
+
+
+NOTE: The non standard -E option is to avoid escaping ( and )
+
+
+
+sed -E "s#(.*)\.png#\1#g"
+
+sed -E "s###g"
+sed -E 's###g'
+
+
+
+cd "C:/Signon/secrets SIN/"
+
+sed -E "s#.*SIN :(.*)RES:.*#SIN :\1#g" "secrets SIN 1.txt" | sort -u > UTSIN2023.txt
+

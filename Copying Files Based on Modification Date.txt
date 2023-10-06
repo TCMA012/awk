@@ -1,0 +1,38 @@
+Copying Files Based on Modification Date in Linux
+
+	modified from 3 days ago
+	We should close -exec by using ‘\;‘ at the end. 
+	All files will be copied into one folder, so if we have duplicate names in different folders, only one will be copied.
+find . -type f -mtime -3 -exec cp {} /root/desFolder \;
+
+
+cd C:/git/
+cd BRTSv2-dev-20211108B
+
+
+
+find . -type f -mtime -1
+
+find . -type f -newermt '3 Mar 2023 14:00'
+
+
+
+
+	-ltr to sort our list by the last modification time. 
+	we have two spaces on “Jan  2”.
+for i in `ls -ltr | grep "Jan  2" | awk '{print $9}' `; do cp $i* /root/desFolder; done
+
+If we need to copy the files inside the subfolders, we can use cp -r.
+
+We can also copy files that are modified between ‘07:00‘ and ‘07:59‘:
+
+for i in `ls -ltr | grep "Jan 2 07:" | awk '{print $9}' `; do cp $i* /root/desFolder; done
+
+Here we used ’07:‘ because grep considers details as text, so it cannot recognize the time.
+
+
+
+	use date-time in the full format (e.g., DD-MM-YYY HH:MM)
+cp `find . -type f -newermt '1 Jan'` /root/desFolder
+
+cp `find . -type f -newermt '1 Jan 2023 08:00'` /root/desFolder

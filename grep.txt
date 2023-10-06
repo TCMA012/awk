@@ -1,0 +1,62 @@
+grep -P enables PCRE syntax. (This is a non-standard extension -- not even all builds of GNU grep support it, as it depends on the optional libpcre library, and whether to link this in is a compile-time option).
+grep -o emits only matched text, and not the entire line containing said text, in output. (This too is nonstandard, though more widely available than -P).
+
+\K is a PCRE extension to regex syntax discarding content prior to that point from being included in match output.
+“keep” everything it had matched prior to the \K and not include it in matched string. This provides variable-length lookbehind of any length.
+
+
+
+cd C:/Users/txm076/domains/d-domain01/logs/application
+
+grep -Po 'OtherPartyHandlerBean - \K.*800389405.*' brom.bro.ejbcomponents.AdminServer.log | sort -u
+
+grep -Po 'OtherPartyHandlerBean - \K.*maskutfee.*' brom.bro.ejbcomponents.AdminServer.log | sort -u
+
+
+
+cd C:/"@Test Page template R4-2022/@Test Page template/UT1_2023/SK4 ownerBN"
+
+grep -Po 'get\K.*(?=\()' fields.txt
+ 
+OwnerSbrnRoot(i)800389405
+getRestartLstNm()  800389405
+
+
+echo "def\nabc" | grep -Po 'a\K.(?=c)'
+
+echo "def\nabc" | grep -o 'a.c'
+
+echo "abc" | grep -Po 'a.(?=c)' 
+
+echo "abc" | grep -Po 'a\K.(?=c)'
+
+echo "abc" | grep -Po 'a\K.*'
+
+echo "abcdef" | grep -Po 'a\K.*(?=ef)'
+
+
+
+https://scripter.co/grep-po/
+string="web report: https://foo.bar/detail.html"
+substring=$(grep -Po 'web report:\s*\K.*?(?=/detail\.html)' <<< "${string}")
+echo "${substring}"
+
+
+
+LookAhead also allows you to remove part of the matching text from a capture group.  Consider an example where we do need the final child path to end with “/data”, but are only interested in pulling back the base directory.
+
+# the value must end with "/data" to match,
+# but we only want the base directory location output
+$ grep -Po "<paths?\>\K[^<]+(?=/data)" test.xml
+/my
+/global
+
+
+
+The \K is the short-form (and more efficient form) of (?<=pattern) which you use as a zero-width look-behind assertion before the text you want to output. (?=pattern) can be used as a zero-width look-ahead assertion after the text you want to output.
+For instance, if you wanted to match the word between foo and bar, you could use:
+
+$ grep -oP 'foo \K\w+(?= bar)' test.txt
+or (for symmetry)
+
+$ grep -oP '(?<=foo )\w+(?= bar)' test.txt

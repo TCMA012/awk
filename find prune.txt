@@ -1,0 +1,33 @@
+find prune
+find [path] [conditions to prune] -prune -o \
+            [your usual conditions] [actions to perform]
+You pretty much always want the -o (logical OR) immediately after -prune, because that first part of the test (up to and including -prune) will return false for the stuff you actually want (ie: the stuff you don't want to prune out).
+
+Here's an example:
+
+find . -name .snapshot -prune -o -name '*.foo' -print
+
+This will find the "*.foo" files that aren't under ".snapshot" directories. In this example, -name .snapshot makes up the [conditions to prune], and -name '*.foo' -print is [your usual conditions] and [actions to perform].
+
+Important notes:
+
+If all you want to do is print the results you might be used to leaving out the -print action. You generally don't want to do that when using -prune.
+
+The default behavior of find is to "and" the entire expression with the -print action if there are no actions other than -prune (ironically) at the end. That means that writing this:
+
+ find . -name .snapshot -prune -o -name '*.foo'              # DON'T DO THIS
+is equivalent to writing this:
+
+ find . \( -name .snapshot -prune -o -name '*.foo' \) -print # DON'T DO THIS
+which means that it'll also print out the name of the directory you're pruning, which usually isn't what you want. Instead it's better to explicitly specify the -print action if that's what you want:
+
+ find . -name .snapshot -prune -o -name '*.foo' -print       # DO THIS
+If your "usual condition" happens to match files that also match your prune condition, those files will not be included in the output. The way to fix this is to add a -type d predicate to your prune condition.
+
+For example, suppose we wanted to prune out any directory that started with .git (this is admittedly somewhat contrived -- normally you only need to remove the thing named exactly .git), but other than that wanted to see all files, including files like .gitignore. You might try this:
+
+find . -name '.git*' -prune -o -type f -print               # DON'T DO THIS
+This would not include .gitignore in the output. Here's the fixed version:
+
+find . -name '.git*' -type d -prune -o -type f -print       # DO THIS
+Extra tip: if you're using the GNU version of find, the texinfo page for find has a more detailed explanation than its manpage (as is true for most GNU utilities).

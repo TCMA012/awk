@@ -1,0 +1,77 @@
+Bash function
+
+lines_in_file () {
+	cat $1 | wc -l
+}
+
+num_lines=$( lines_in_file $1 )
+echo The file $1 has $num_lines lines in it.
+
+
+
+
+
+https://www.baeldung.com/linux/bash-functions
+simple_function() {
+    for ((i=0;i<2;++i)) do
+        echo -n " "$i" ";
+    done
+}
+
+simple_function
+
+
+? bash -x ./simple_function
+
+
+
+
+function simple_inputs() {
+    echo "This is the first argument [$1]"
+    echo "This is the second argument [$2]"
+    echo "Calling function with $# arguments"
+}
+
+simple_inputs one 'two three'
+
+
+
+command substitution:
+function simple_outputs() {
+    sum=$(($1+$2)) 
+    echo $sum
+}
+
+sum=$(simple_outputs 1 2)
+echo "Sum is $sum"
+
+
+
+redirecting to and from other commands? For this purpose, we can use process substitution:
+The output of the ls command is interpreted as a file through process substitution.
+Then, this output is redirected to the standard input of the function, which processes it further.
+function redirection_in_ps() {
+    read
+    while read -a input;
+        do
+            echo "${input[2]} ${input[8]}"
+        done
+} < <(ls -ll /)
+
+redirection_in_ps
+
+
+
+When we want to redirect the standard output of a function to a command, we just reverse the process substitution operator at line 7:
+consider the standard input of grep as a file and redirect our function output to it.
+function redirection_out_ps() {
+    declare -a output=("baeldung" "lorem" "ipsum" "caracg")
+    for element in "${output[@]}"
+        do
+            echo "$element"
+        done
+} > >(grep "g")
+
+redirection_out_ps
+
+

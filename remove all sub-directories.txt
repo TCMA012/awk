@@ -1,0 +1,25 @@
+bash remove all sub-directories from within a directory
+rm -R -- */
+
+
+
+Note the -- which separates options from arguments and allows one to remove entries starting with a hyphen - otherwise after expansion by the shell the entry name would be interpreted as an option by rm (the same holds for many other command line utilities).
+
+Add the -f option if you don't want to be prompted for confirmation when deleting non-writeable files.
+
+Note that by default, hidden directories (those whose name starts with .) will be left alone.
+
+An important caveat: the expansion of */ will also include symlinks that eventually resolve to files of type directory. And depending on the rm implementation, rm -R -- thelink/ will either just delete the symlink, or (in most of them) delete the content of the linked directory recursively but not that directory itself nor the symlink.
+
+=
+
+rm .git
+hidden .git folder
+
+* matches all non-dot-files, 
+.[!.]* matches all dot files except . and files whose name begins with .., and 
+..?* matches all dot-dot files except ... Together they match all files other than . and ... If any of these three patterns matches nothing, it expands to itself; rm -f doesn't care about non-existent arguments, so this doesn't matter.
+
+rm -rf -- ..?* .[!.]* *
+
+rm -rf -- ..?* .[!.]*

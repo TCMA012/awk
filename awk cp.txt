@@ -1,0 +1,51 @@
+Bash find pipe awk
+awk cp
+system
+
+move each file in a directory into a sub directory based on that files last modified day.
+ls -lRt lpftp.* | awk '{print $7, $9}' | while read day file ; do mkdir -p "$day"; cp "$file" "$day"; done
+
+
+
+https://www.baeldung.com/linux/awk-call-external-program
+Line #1: Start the awk command by a regular user and set the required variables such as FS and OFS
+Line #2: Extend the title by adding a new field: Backup_status and print the title
+Line #3: Construct the copy command and discard all outputs by redirecting both stdout and stderr to /dev/null
+Line #4: Call the system() function and hold the exit status in a variable st
+Line #5: Print the output with the backup status information (st==0 means Success)
+awk -F',' -v OFS=',' -v toDir="/tmp/test/backup"     \
+        'NR==1{print $0,"Backup_status"; next}
+        { backup_cmd = "cp " $2 " " toDir " >/dev/null 2>&1"
+          st = system(backup_cmd)
+          print $0, ( st==0? "Success" : "Failed" ) }' /tmp/test/file_list.csv
+
+Id,Filename,Create_date,Backup_status
+1,"/tmp/test/source/file1.txt",2020-06-01,Success
+2,"/tmp/test/source/file2.pdf",2020-05-01,Success
+3,"/tmp/test/source/file3.txt",2020-06-03,Failed
+4,"/tmp/test/source/file4.zip",2020-06-07,Success
+
+
+
+
+https://cmd.inp.nsk.su/old/cmd2/manuals/unix/UNIX_Unleashed/ch04.htm
+I could print the contents of those files with the following:
+
+find . -name "*.prn" -exec lp {} \;
+The find command will insert the individual filenames that it locates in place of the { } and execute the lp command. But if I wanted to execute a command that required two arguments (to copy files to a new name) or execute multiple commands at once, I could not do it with find alone. I could create a shell script that would accept the single argument and use it in multiple places, or I could create an awk single-line program:
+
+$ find . -name "*.prn" -print | awk '{print "echo bak" $1; print "cp " $1 " " $1".bak";}'
+echo bak./exam2.prn
+cp ./exam2.prn ./exam2.prn.bak
+echo bak./exam1.prn
+cp ./exam1.prn ./exam1.prn.bak
+echo bak./exam3.prn
+cp ./exam3.prn ./exam3.prn.bak
+To get the commands to actually execute, pipe them into one of the shells. The following example uses the Korn shell; you can use the one you prefer:
+
+$ find . -name "*.prn" -print |
+     awk '{print "echo bak" $1; print "cp " $1 " " $1".bak";}' |
+     ksh
+bak./exam2.prn
+bak./exam1.prn
+bak./exam3.prn

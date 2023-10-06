@@ -1,0 +1,20 @@
+find only directories without subdirectories
+look through a directory tree for only those directories that are the ends of branches (I will call them leaves here), i.e., dircetories with no subdirectories in them? 
+
+
+use nested find and count number of subdirectories:
+
+find . -type d \
+  \( -exec sh -c 'find "$1" -mindepth 1 -maxdepth 1 -type d -print0 | grep -cz "^" >/dev/null 2>&1' _ {} \; -o -print \)
+
+
+Checking the hard links with -links 2 should work for traditional UNIX file systems. The -empty condition is not part of the POSIX standard, but should be available on most Linux systems.
+
+
+
+?
+To find only those leaf directories that contain non-directory files, you can combine an answer of the referenced question https://unix.stackexchange.com/a/203991/330217 or similar questions https://stackoverflow.com/a/4269862/10622916 or https://serverfault.com/a/530328 with find's ! -empty
+
+find rootdir -type d -links 2 ! -empty
+
+?

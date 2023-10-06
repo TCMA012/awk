@@ -1,0 +1,16 @@
+set : as the separator:
+
+awk -F: '{print $1}'
+
+awk -v FS=: '{print $1}'
+
+awk '{print $1}' FS=:
+
+awk 'BEGIN{FS=":"} {print $1}'
+
+
+
+C:\Weblogic
+cd C:/Weblogic
+
+awk -F';' '{print $0}' "wl12.2 Console Output2018.txt"

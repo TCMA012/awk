@@ -1,0 +1,26 @@
+Grep OR Using \|
+If you use the grep command without any option, you need to use \| to separate multiple patterns for the or condition.
+
+grep 'pattern1\|pattern2' filename
+
+
+
+Grep OR Using -E
+grep -E option is for extended regexp. If you use the grep command with -E option, you just need to use | to separate multiple patterns for the or condition.
+
+grep -E 'pattern1|pattern2' filename
+
+
+
+Grep AND using -E ‘pattern1.*pattern2’
+There is no AND operator in grep. But, you can simulate AND using grep -E option.
+
+grep -E 'pattern1.*pattern2' filename
+grep -E 'pattern1.*pattern2|pattern2.*pattern1' filename
+
+
+
+Grep NOT using grep -v
+Using grep -v you can simulate the NOT conditions. -v option is for invert match. i.e It matches all the lines except the given pattern.
+
+grep -v 'pattern1' filename

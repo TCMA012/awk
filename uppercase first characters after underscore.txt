@@ -1,0 +1,54 @@
+uppercase first characters after underscore
+
+foo="the_quick_brown_dog"
+foo=$(echo "$foo" | sed -e 's/\(^\|_\)\([a-z]\)/\1\u\2/g')
+echo $foo
+
+
+
+uppercase first characters after space, remove space
+echo "const enum values derived" | sed -e 's/\(^\| \)\([a-z]\)/\1\u\2/g' -e 's# ##g'
+
+
+
+uppercase first characters after space
+echo "const enum values derived" | sed -e 's/\(^\| \)\([a-z]\)/\1\u\2/g'
+
+echo "the quick brown dog" | sed -e 's/\(^\| \)\([a-z]\)/\1\u\2/g'
+
+
+foo="the quick brown dog"
+result=$(echo "$foo" | sed -e 's/\(^\| \)\([a-z]\)/\1\u\2/g')
+echo $result
+
+
+
+str="text_search";
+
+uppercase() {
+    echo "${1^}" | sed 's/_\([a-z]\)/_\u\1/g'
+}
+
+str=$(uppercase "$str")
+
+echo "$str"
+
+
+
+str="OasisDigital_angular-typed-forms-helpers_library";
+
+uppercase() {
+    echo "${1^}" | sed -e 's/_\([a-z]\)/_\u\1/g' -e 's/-\([a-z]\)/-\u\1/g' 
+}
+
+str=$(uppercase "$str")
+
+
+uppercaseNoDash() {
+    echo "${1^}" | sed -e 's/_\([a-z]\)/\u\1/g' -e 's/-\([a-z]\)/\u\1/g' 
+}
+
+str=$(uppercaseNoDash "$str")
+
+
+echo "$str"

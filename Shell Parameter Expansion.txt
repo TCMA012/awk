@@ -1,0 +1,17 @@
+the Bash Reference Manual "Shell Parameter Expansion"
+https://www.gnu.org/software/bash/manual/bash.html#Shell-Parameter-Expansion
+bash variable sub
+
+firstString="I love Suzi and Marry"
+secondString="Sara"
+echo "${firstString/Suzi/"$secondString"}"    
+# prints 'I love Sara and Marry'
+
+for dir in brom-mavenbro-*; do
+    echo "$dir"
+	echo "${dir/mavenbro/bro}"
+	mv "$dir" "${dir/mavenbro/bro}"
+done
+
+
+

@@ -1,0 +1,23 @@
+http://mywiki.wooledge.org/BashFAQ/050
+save a command so I can run it later without having to repeat it each time
+Just use a function:
+
+
+pingMe() {
+    ping -q -c1 -- "$HOSTNAME"
+}
+
+[...]
+if pingMe; then ..
+
+
+
+
+a log of my script's actions
+Another reason people attempt to stuff commands into variables is because they want their script to print each command before it runs it. If that's all you want, then simply use 
+set -x command, or invoke your script with 
+#!/bin/bash -x
+ or 
+bash -x ./myscript.
+
+

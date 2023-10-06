@@ -1,0 +1,26 @@
+awk '{ print tolower($0) }' <<< 'MAUTMM
+TCUTMM'
+
+awk '{ print tolower($0) }' <<< 'MAUTLL
+TCUTLL'
+
+awk '{ print tolower($0) }' <<< 'MASKUTA
+TCSKUTA'
+
+awk '{ print tolower($0) }' <<< 'MASKUTTESTINGTHREE
+TCSKUTTESTINGTHREE'
+
+awk '{ print tolower($0) }' <<< 'ENSURING ARRAY LENGTHS'
+
+
+
+
+awk tolower first char
+
+awk '{print tolower(substr($0,1,1)) substr($0,2)}' CommunicationDevice.txt
+
+
+
+awk '{ print toupper($0) }' <<< 'MAUTMM
+TCUTMM'
+

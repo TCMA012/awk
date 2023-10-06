@@ -1,0 +1,5 @@
+store a command in a variable in a shell script
+x="ls | wc"
+eval "$x"
+y=$(eval "$x")
+echo "$y"

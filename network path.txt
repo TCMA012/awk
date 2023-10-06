@@ -1,0 +1,27 @@
+network paths with Git Bash
+
+
+Mapped network drives are always "private" (-> user account specific). Even if you execute a command with admin permissions (UAC prompt) this is already a "different account" so your mapped drives created by your account without admin permission are not available
+
+
+???
+H:\
+pushd \\OMEGA.DCE-EIR.NET\NATDFS\CRA\HQ\ITB\ITB_H19\UV3\TXM076
+
+ls /h/
+ls /H/
+
+%USERNAME%
+
+NET USE G: "\\omega\natdfs\CRA\HQ\ITB\ITB_H19\GV2\BRAIS" /pers:no >NUL
+
+
+\\OMEGA.DCE-EIR.NET\NATDFS\CRA\HQ\ITB\ITB_H19\GV2\SOLUTIONS\BESD\DATA_E
+\\OMEGA.DCE-EIR.NET\NATDFS\CRA\HQ\ITB\ITB_H19\GV2\SOLUTIONS\BESD\DATA_E
+
+
+ls //OMEGA.DCE-EIR.NET/NATDFS/CRA/HQ/ITB/ITB_H19/UV3/TXM076
+
+ls //OMEGA.DCE-EIR.NET/NATDFS/CRA/HQ/ITB/ITB_H19/UV3/TXM076/2023
+
+Windows network path Git Bash "Permission denied"

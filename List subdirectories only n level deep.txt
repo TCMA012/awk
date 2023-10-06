@@ -1,0 +1,22 @@
+List subdirectories only n level deep
+	
+find / -maxdepth 2 -mindepth 2 -type d -exec basename {} \;
+
+cd C:/angular
+
+cd C:/angulartraining_alcfeoh-main
+cd C:/angulartraining_alcfeoh-main/test
+
+cd C:/angular_dev.to
+
+
+
+find .  -maxdepth 1 -mindepth 1
+find .  -maxdepth 2 -mindepth 2 -name "*.txt"
+
+find .  -maxdepth 2 -mindepth 2 -type d
+
+find .  -maxdepth 1 -mindepth 1 -type d
+
+
+cp -a 

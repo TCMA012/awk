@@ -1,0 +1,4 @@
+string length
+cd C:/angularCRA
+
+awk '{if (length($0) == 4) print $0}' applications2023.txt | sort -u > applications2023ok.txt

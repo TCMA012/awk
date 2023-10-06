@@ -1,0 +1,6 @@
+sed edit file in place
+sed -i 's/STRING_TO_REPLACE/STRING_TO_REPLACE_IT/g' 
+sed -i 's#STRING_TO_REPLACE#STRING_TO_REPLACE_IT#g' 
+sed -i 's#test#tc#g' C:/bash2/testfile
+
+sed -i -e 's#tc#tc2#g' -e 's#oh#hi#g' C:/bash2/testfile

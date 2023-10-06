@@ -1,0 +1,6 @@
+sed replace digit
+C:\Users\txm076\eclipse-workspace\Test\src\recipesOptional
+cd C:/Users/txm076/eclipse-workspace/Test/src/recipesOptional
+
+sed -e 's#[0-9]* ##' R3.java
+

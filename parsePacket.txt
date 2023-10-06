@@ -1,0 +1,64 @@
+cd C:/CR2023R2/"52687 RAMP - BN interface"
+
+in="C:/git/common-dev-future-PSL52687_RAMP_BN_interface4/implementation/src/ca/gc/ccra/brom/integration/BRI5.java"
+
+-e 's###g'
+
+-e '//d'
+
+sed '/\S/!d'
+
+
+ 
+grep 'public.* get' $in | sed -E 's#public.*(get.*)#\1#g' | sed -e 's#\s##' -e 's#{##' -e '/throws/d' -e '/ErrorCodes/d' > get.txt
+
+sed -e '/Timestamps/d' -e '/Program/d' -e '/Key/d' -e '/Data/d' -e '/Rows/d' -e '/15/d' -e '/69/d' -e '/\S/!d' get.txt > get2.txt
+
+
+
+grep "int i" get2.txt | sed -e 's#int ##' -e 's# ##g' > get2inti.txt
+
+grep -v "int i" get2.txt > get2intiv.txt
+
+
+
+awk '{print "log.info(\"" $0 "\" + packet." $0 ");"}' get2intiv.txt > intiv.txt
+
+awk '{print "log.info(\"" $0 "\" + packet." $0 ");"}' get2inti.txt > inti.txt
+
+
+awk '{print "packet." $0 ".trim());"}' get2inti.txt
+
+
+
+
+awk '{ printf "packet.%s.trim());\n", $0 }'  get2inti.txt
+
+
+
+
+sed -e 's#get#set#' get.txt
+
+
+
+getGvnNmLegal
+
+
+
+awk '{print tolower(substr($0,1,1)) substr($0,2) ,, $0}' CommunicationDevice.txt 
+awk '{print tolower(substr($0,1,1)) substr($0,2) ,"", $0}' CommunicationDevice.txt 
+awk '{print "String", tolower(substr($0,1,1)) substr($0,2) ,"= ", $0}' CommunicationDevice.txt 
+awk '{print "String", tolower(substr($0,1,1)) substr($0,2) ,"= packet.get"$0}' CommunicationDevice.txt 
+
+awk '{print "String", tolower(substr($0,1,1)) substr($0,2) ,"= packet.get"$0"(i, j).trim();"}' CommunicationDevice.txt 
+
+awk '{print "String", tolower(substr($0,1,1)) substr($0,2) ,"= packet.get"$0"(i, j).trim();"}' WorldCommunicationDevice.txt 
+
+
+
+
+
+
+awk '{print "log.info(\"", $0, "\" + ", tolower(substr($0,1,1)) substr($0,2), ");"}' CommunicationDevice.txt 
+
+awk '{print "log.info(\"", $0, "\" + ", tolower(substr($0,1,1)) substr($0,2), ");"}' WorldCommunicationDevice.txt 

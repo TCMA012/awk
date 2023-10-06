@@ -1,0 +1,14 @@
+awk -i inplace
+Awk "-i inplace"
+
+echo "test" > C:/bash2/testfile
+cat  C:/bash2/testfile
+
+? awk -i inplace '/hello/ { print "oh,", $0 }' C:/bash2/testfile
+awk -i inplace '/test/ { print "oh,", $0 }' C:/bash2/testfile
+
+awk -i '/test/ { print "oh,", $0 }' C:/bash2/testfile
+
+
+awk '... code ...' input_file > tmp_file && mv tmp_file input_file
+awk '{ print "oh,", $0 }' C:/bash2/testfile > tmp_file && mv tmp_file C:/bash2/testfile

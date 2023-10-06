@@ -1,0 +1,11 @@
+set a variable to the output of a command
+
+
+In addition to backticks `command`, command substitution can be done with $(command) or "$(command)", which I find easier to read, and allows for nesting.
+
+OUTPUT=$(ls -1)
+echo "${OUTPUT}"
+
+MULTILINE=$(ls \
+   -1)
+echo "${MULTILINE}"

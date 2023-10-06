@@ -1,0 +1,21 @@
+awk Redirecting Output of print and printf
+
+awk '{ print $1 > "names.unsorted"
+       command = "sort -r > names.sorted"
+       print $1 | command }' $conversion/findleaves2.txt
+
+awk '{ print $1 > "names.unsorted"; command = "sort -r > names.sorted"; print $1 | command }' $conversion/findleaves2.txt
+
+
+
+BEGIN {
+   print "foo" | "cat > file"
+   print "bar" | "cat > file"
+}
+
+{ print "b"; print "a"; } | "sort"; close("sort");
+print "c";
+{ print "b"; print "a"; } | "sort"; close("sort");
+
+
+

@@ -1,0 +1,25 @@
+Copy recursively X folders deep
+only 2 layers deep
+
+It will miss symbolic links
+
+
+
+find src-dir/ -maxdepth 2 -type d -exec mkdir -p dest_dir/{} \;
+find src_dir/ -maxdepth 3 -type f -exec cp {} dest_dir/{} \;
+
+
+find . -maxdepth 2 -type d -not \( -path ./"Alexander Goncharuk" -prune \) -not \( -path ./ArmenVardanyan -prune \) -exec mkdir -p H:/2023/angular_dev.to/{} \;
+
+find . -maxdepth 2 -type d -not \( -path ./"Alexander Goncharuk" -prune \) -not \( -path ./ArmenVardanyan -prune \) -exec mkdir -p "H:/2023/angular_dev.to/{}" \;
+
+find . -maxdepth 2 -type d -not \( -path ./"Alexander Goncharuk" -prune \) -not \( -path ./ArmenVardanyan -prune \) -exec mkdir -p /H/2023/angular_dev.to/{} \;
+
+find . -maxdepth 2 -type d -not \( -path ./"Alexander Goncharuk" -prune \) -not \( -path ./ArmenVardanyan -prune \) -exec mkdir -p "/H/2023/angular_dev.to/{}" \;
+
+
+ls H:/
+
+
+find src_dir/ -maxdepth 3 -type f -exec cp {} dest_dir/{} /;
+

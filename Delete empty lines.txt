@@ -1,0 +1,15 @@
+Delete empty lines
+'s###'
+
+sed '/\S/!d'
+
+sed '/^[[:space:]]*$/d'
+
+
+awk 'NF' 
+
+
+
+grep
+.
+-v '^$'

@@ -1,0 +1,11 @@
+jsoup: Java HTML Parser
+jsoup is a Java library for working with real-world HTML. It provides a very convenient API for fetching URLs and extracting and manipulating data, using the best of HTML5 DOM methods and CSS selectors.
+
+
+awk junit5
+
+
+cd C:/JUnit/junit5-samples/
+
+awk '/^}$/ { in_warning = 0 } /import org/ { in_warning = 1 } in_warning { print }' 'JUnit 5 User Guide.html' 
+awk '/import org/ { in_warning = 1 } in_warning { print }' 'JUnit 5 User Guide.html' 

@@ -1,0 +1,24 @@
+SIN
+LOGutil
+
+awsc.*
+? awsc.amss.wls.*
+
+Download awsc.amss.wls-cra-*.log
+
+
+
+
+cd "C:/Signon/secrets SIN/"
+
+grep -ai "secrets SIN" *log* > "secrets SIN 1.txt"
+
+
+
+sed -E "s#.*SIN :(.*)RES:.*#SIN :\1#g" "secrets SIN 1.txt" | sort -u > UTSIN2023.txt
+
+
+
+
+cd C:/Users/txm076/Downloads/aws
+grep -ai "secrets SIN" *log*

@@ -1,0 +1,39 @@
+find exclude dir
+
+Use the -prune primary.  if you want to exclude ./misc:
+
+find . -path ./misc -prune -o -name '*.txt' -print
+
+
+To exclude multiple directories, OR them between parentheses.
+
+find . -type d \( -path ./dir1 -o -path ./dir2 -o -path ./dir3 \) -prune -o -name '*.txt' -print
+
+find . -type d \( -path ./"Alexander Goncharuk" -o -path ./ArmenVardanyan \) -prune -print
+
+
+find . -type d  -prune \( -path ./"Alexander Goncharuk" -o -path ./ArmenVardanyan \)
+
+
+
+And, to exclude directories with a specific name at any level, use the -name primary instead of -path.
+
+find . -type d -name node_modules -prune -o -name '*.json' -print
+
+
+
+If -prune doesn't work for you, this will:
+
+find -name "*.js" -not -path "./directory/*"
+
+find build -not \( -path build/external -prune \) -name \*.js
+
+# you can also exclude multiple paths
+find build -not \( -path build/external -prune \) -not \( -path build/blog -prune \) -name \*.js
+
+Important Note: the paths you type after -path must exactly match what find would print 
+
+
+find . -not \( -path ./"Alexander Goncharuk" -prune \) -not \( -path ./ArmenVardanyan -prune \) 
+
+find . -maxdepth 2 -type d -not \( -path ./"Alexander Goncharuk" -prune \) -not \( -path ./ArmenVardanyan -prune \) 

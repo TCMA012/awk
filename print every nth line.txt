@@ -1,0 +1,6 @@
+print every nth line
+To print every second line, starting with the first:
+awk 'NR%2==1' file.txt
+
+To print every tenth line, starting with the tenth line:
+awk 'NR%10==0' file.txt

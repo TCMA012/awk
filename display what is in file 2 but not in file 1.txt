@@ -1,0 +1,16 @@
+display what is in file 2 but not in file 1
+remove the lines which appear on file B from another file A
+find difference between two text files with one item per line
+https://stackoverflow.com/questions/4366533/how-to-remove-the-lines-which-appear-on-file-b-from-another-file-a
+
+grep -Fxvf file1 file2
+What the flags mean:
+
+-F, --fixed-strings
+              Interpret PATTERN as a list of fixed strings, separated by newlines, any of which is to be matched.    
+-x, --line-regexp
+              Select only those matches that exactly match the whole line.
+-v, --invert-match
+              Invert the sense of matching, to select non-matching lines.
+-f FILE, --file=FILE
+              Obtain patterns from FILE, one per line.  The empty file contains zero patterns, and therefore matches nothing.

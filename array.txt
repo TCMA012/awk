@@ -1,0 +1,80 @@
+array
+myArray=("cat" "dog" "mouse" "frog")
+myArray=(cat dog mouse frog)
+for str in ${myArray[@]}; do
+  echo $str
+done
+
+for i in ${!myArray[@]}; do
+  echo "element $i is ${myArray[$i]}"
+done
+
+
+
+myArray2=("cat2" "dog2" "mouse2" "frog2")
+myArray3=(cat3 dog3 mouse3 frog3)
+
+for str in ${myArray[@]}; do
+  echo $str
+done
+
+for str in ${myArray2[@]}; do
+  echo $str
+done
+
+for str in ${myArray3[@]}; do
+  echo $str
+done
+
+for i in ${!myArray[@]}; do
+  echo "element $i is ${myArray[$i]} ${myArray3[$i]}"
+done
+
+
+
+cd C:/angularCRA202307/xxxx_maven-struts2base_master/maven-struts2base/
+
+
+
+mavenbrodir=C:/git/mavenbro
+
+mavenbrodir=C:/TEMP/testing
+
+mkdir -p $mavenbrodir
+
+#struts2=(pom.xml xxxx-mavenstruts2base-cfg/pom.xml xxxx-mavenstruts2base-ear/pom.xml xxxx-mavenstruts2base-ejb/pom.xml xxxx-mavenstruts2base-ejb-client/pom.xml xxxx-mavenstruts2base-webapp/pom.xml)
+
+struts2Files=(pom.xml xxxx-mavenstruts2base-cfg/pom.xml xxxx-mavenstruts2base-ear/pom.xml xxxx-mavenstruts2base-ejb/pom.xml xxxx-mavenstruts2base-webapp/pom.xml)
+
+broFiles=($mavenbrodir/pom.xml $mavenbrodir/brom-bro-cfg/pom.xml $mavenbrodir/brom-bro-ear/pom.xml $mavenbrodir/brom-bro-ejb/pom.xml $mavenbrodir/brom-bro-webapp/pom.xml)
+
+#broFiles=($mavenbrodir/pom.xml ${mavenbrodir}/brom-bro-cfg/pom.xml $mavenbrodir/brom-bro-ear/pom.xml $mavenbrodir/brom-bro-ejb/pom.xml $mavenbrodir/brom-bro-webapp/pom.xml)
+
+
+
+for i in ${!struts2Files[@]}; do
+  echo "${struts2Files[$i]} ${broFiles[$i]}"
+  touch "${broFiles[$i]}"
+  cp "${struts2Files[$i]} ${broFiles[$i]}"
+done
+
+
+
+  echo "di (dirname $broFiles[$i])"
+  echo "$(dirname $broFiles[$i])"
+  echo "base $(basename $broFiles[$i])"
+  
+for i in ${!struts2Files[@]}; do
+  echo "${struts2Files[$i]} ${broFiles[$i]}"
+  parentdir="${broFiles[$i]%/*}"
+  echo "mkdir -p $parentdir"
+  mkdir -p $parentdir
+  cp "${struts2Files[$i]}" "$parentdir/."
+done
+
+  cp "${struts2Files[$i]}" "$parentdir/."
+
+
+for file in `get_file_names`; do
+  cp $file `dirname $file`"/newfilename"
+done

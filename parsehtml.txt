@@ -1,0 +1,178 @@
+; when the filenames have spaces - tone down word splitting, set the IFS variable to a single newline character; this way the output of find will only be split at newlines and spaces will remain.
+
+IFS='
+'
+
+
+
+inputhtml="C:/@Test Page template R3-2021/@Test Page template/registerClient_Add_Owner_SIN/UT1/registerClient Add Owner SIN3.html"
+
+inputhtml="C:/@Test Page template R3-2021/@Test Page template/registerClient_Add_Owner_SIN/SB3/registerClient Add Owner SIN7.html"
+
+inputhtml="C:/@Test Page template R3-2021/@Test Page template/registerClient_Add_Owner_SIN/SB3/registerClient Add Owner SIN8.html"
+
+inputhtml="C:/@Test Page template R3-2021/@Test Page template/registerClient_Add_Owner_SIN/SB3/registerClient Add Owner SIN9.html"
+
+inputhtml="C:/@Test Page template R3-2021/@Test Page template/registerClient_Add_Owner_SIN/SB3/registerClient Add Owner SIN10.html"
+
+inputhtml="C:/@Test Page template R3-2021/@Test Page template/registerClient_Add_Owner_SIN/SB3/registerClient Add Owner SIN10businessActivity.html"
+
+inputhtml="C:/@Test Page template R3-2021/@Test Page template/registerClient_Add_Owner_SIN/SB3/registerClient Add Owner SIN11businessActivity.html"
+
+inputhtml="C:/@Test Page template R3-2021/@Test Page template/registerClient_Add_Owner_SIN/SB3/registerClient Add Owner SIN_NO_businessActivity.html"
+
+inputhtml="C:/@Test Page template R3-2021/@Test Page template/registerClient_Add_Owner_SIN/SB3/registerClient Add Owner SIN_NO_businessActivity2.html"
+
+inputhtml="C:/@Test Page template R3-2021/@Test Page template/registerClient_Add_Owner_SIN/SB3/registerClient Add Owner SIN_NO_businessActivity3.html"
+
+inputhtml="C:/@Test Page template R3-2021/@Test Page template/registerClient_Add_Owner_SIN/SB3/registerClient Add Owner SIN_NO_businessActivity4.html"
+
+inputhtml="C:/@Test Page template R3-2021/@Test Page template/registerClient_Add_Owner_SIN/SB3/registerClient Add Owner SIN13.html"
+
+inputhtml="C:/@Test Page template R3-2021/@Test Page template/registerClient_Add_Owner_SIN/SB3/registerClient Add Owner SIN Blackmore.html"
+
+
+inputhtml="C:/@Test Page template R3-2021/@Test Page template/registerClient_Add_Owner_SIN/SB3/registerClient Add Owner SIN11_SIN_deceased_person.html"
+
+inputhtml="C:/@Test Page template R3-2021/@Test Page template/registerClient_Add_Owner_SIN/SB3/registerClient Add Owner SIN_SIN_not_on_file.html"
+
+inputhtml="C:/@Test Page template R3-2021/@Test Page template/registerClient_Add_Owner_SIN/SB3/registerClient Add Owner SIN jurisdictionCode01 Blackmore.html"
+
+inputhtml="C:/@Test Page template R3-2021/@Test Page template/registerClient_Add_Owner_SIN/SB3/registerClient Add Owner SIN jurisdictionCode01 Blackmore K1K1K1.html"
+
+inputhtml="C:/@Test Page template R3-2021/@Test Page template/registerClient_Add_Owner_SIN/SB3/registerClient Add Owner SIN lastName only.html"
+
+
+
+
+inputhtml="C:/@Test Page template R3-2021/@Test Page template/registerClient_Add_Owner_SIN/UT1/registerClient Add Owner SIN3.html"
+
+
+
+inputhtml="C:/@Test Page template R3-2021/@Test Page template/SB3/registerClient17.html"
+
+inputhtml="C:/@Test Page template R3-2021/@Test Page template/SB3/registerClientForeignSoleProp.html"
+
+inputhtml="C:/@Test Page template R3-2021/@Test Page template/SB3/registerClientForeign.html"
+
+inputhtml="C:/@Test Page template R3-2021/@Test Page template/SB3/registerClientForeignPhysicalandMailing.html"
+
+inputhtml="C:/@Test Page template R3-2021/@Test Page template/SB3/registerClientForeignPhysicalandMailingGB.html"
+
+inputhtml="C:/@Test Page template R3-2021/@Test Page template/SB3/registerClientForeignPhysicalandMailingMX.html"
+
+inputhtml="C:/@Test Page template R3-2021/@Test Page template/SB3/registerClientForeignPhysicalandMailingGBMX.html"
+
+
+inputhtml="C:/@Test Page template Update Owner for CC/registerClient.html"
+
+inputhtml="C:/@Test Page template Update Owner for CC/registerClientSK.html"
+
+inputhtml="C:/@Test Page template Update Owner for CC/registerClientCC.html"
+
+
+
+inputhtml="C:/@Test Page template UpdateOwner CC/registerClientCC.html"
+
+
+
+inputhtml="C:/@Test Page template R4-2022/@Test Page template/SB4/registerClient.html"
+
+inputhtml="C:/@Test Page template R4-2022/@Test Page template/SB/registerClient.html"
+
+
+
+inputhtml="C:/@Test Page template registerClientWithSIN/SB3/registerClientWithSIN8.html"
+
+inputhtml="C:/@Test Page template registerClientWithSIN/SB2/registerClientWithSIN2.html"
+inputhtml="C:/@Test Page template registerClientWithSIN/SB2/registerClientWithSIN6.html"
+
+inputhtml="C:/@Test Page template registerClientWithSIN/SB2/registerClientWithSIN103864641.html"
+inputhtml="C:/@Test Page template registerClientWithSIN/SB2/registerClientWithSIN102529823.html"
+
+
+inputhtml="C:/@Test Page template R4-2022/@Test Page template/SB2_SIN_known/registerClient.html"
+
+
+
+inputhtml="C:/@Test Page template R4-2022/@Test Page template/SB2/registerClient4.html"
+
+
+
+inputhtml="C:/@Test Page template R4-2022/@Test Page template - Axis 2/UT2/registerClient.html"
+
+
+
+inputhtml="C:/@Test Page template R4-2022/@Test Page template - Axis 2/UT2/registerClientWithSIN.html"
+inputhtml="C:/@Test Page template R4-2022/@Test Page template - Axis 2/UT2_2022/registerClientWithSIN.html"
+inputhtml="C:/@Test Page template R4-2022/@Test Page template - Axis 2/UT2_2022/registerClient.html"
+
+
+
+inputhtml="C:/@Test Page template R4-2022//@Test Page template/No_sin_on_file_SB1/registerClientSOLEPROP103864641.html"
+
+inputhtml="C:/@Test Page template R4-2022//@Test Page template/No_sin_on_file_SB1/registerClientSOLEPROP102529823.html"
+
+
+C:\@Test Page template R4-2022\@Test Page template\UT_SIN_known
+
+inputhtml="C:/@Test Page template R4-2022/@Test Page template/UT_SIN_known/registerClient.html"
+inputhtml="C:/@Test Page template R4-2022/@Test Page template/UT2_SIN_known/registerClient.html"
+
+C:\@Test Page template R4-2022\@Test Page template\UT2_SIN_known\registerClient.html
+
+inputhtml="C:/@Test Page template authSrc/authSrcRegisterClientG0PE.html"
+
+inputhtml="C:/@Test Page template R4-2022/@Test Page template/UT2/registerClientTC2022.html"
+
+inputhtml="C:/@Test Page template R4-2022/@Test Page template/UT2/registerClientTC2022.html"
+
+inputhtml="C:/@Test Page template R1-2022/@Test Page template/UT2_SIN_known/authSrcRegisterClientG1.html"
+inputhtml="authSrcRegisterClientBG1.html"
+
+cd "C:/@Test Page template R4-2022/@Test Page template/No_sin_on_file_SB1"
+
+cd "C:/@Test Page template registerClientWithSIN/OT20220922"
+cd "C:/@Test Page template R4-2022/@Test Page template/UT2_2023"
+cd "C:/@Test Page template R4-2022/@Test Page template/UT2_2023/B"
+cd "C:/@Test Page template R4-2022/@Test Page template/UT2_2023/C"
+cd "C:/@Test Page template R4-2022/@Test Page template/UT2_2023/SK"
+cd "C:/@Test Page template R4-2022/@Test Page template/UAIR-91543 Owners do not appear in order in BTRS/UT2 additional testing"
+cd "C:/@Test Page template registerClientWithSIN/UT2_2023"
+cd "C:/@Test Page template registerClientWithSIN/UT1_2023"
+
+cd "C:/@Test Page template R4-2022/@Test Page template/UT2_SIN_known_2023"
+cd "C:/@Test Page template R4-2022/@Test Page template/UT1_SIN_known_202306"
+
+cd "C:/@Test Page template R4-2022/@Test Page template/UT1_2023"
+cd "C:/@Test Page template R4-2022/@Test Page template/UT1_2023/CC"
+cd "C:/@Test Page template R4-2022/@Test Page template/UT1_2023/SK"
+cd "C:/@Test Page template R4-2022/@Test Page template/UT1_2023/SK2"
+cd "C:/@Test Page template R4-2022/@Test Page template/UT1_2023/SK3"
+cd "C:/@Test Page template R4-2022/@Test Page template/UT1_2023/SKlower"
+cd "C:/@Test Page template R4-2022/@Test Page template/UT1_2023/SK4 ownerBN"
+cd "C:/@Test Page template R4-2022/@Test Page template/OT2"
+cd "C:/@Test Page template R4-2022/@Test Page template/OT1_2023"
+
+inputhtml="registerClientWithSINOneOwner2.html"
+inputhtml="registerClientBC5Owners.html"
+inputhtml="registerClientBC5Owners_addressSameNOT.html"
+inputhtml="registerClient.html"
+inputhtml="registerClientWithSINOneOwner3.html"
+inputhtml="registerClientBC5Owners.html"
+inputhtml="registerClientCC.html"
+inputhtml="registerClientSK.html"
+inputhtml="registerClientSK2.html"
+inputhtml="registerClientSK3.html"
+inputhtml="registerClientSK4.html"
+inputhtml="registerClientSKownerBN2.html"
+inputhtml="registerClientSKownerBN3.html"
+inputhtml="registerClientSKownerBN-ownerBN.html"
+
+
+grep -P -o 'legalName(>.*<)' $inputhtml | sed -e 's#legalName>.$##' -e 's#<##' -e '/^$/d'; grep -P -o 'clientOwnershipTypeCode(>.*<)' $inputhtml | sed -e 's#<##' ; grep -P -o 'provinceStateCode(>.*<)' $inputhtml | sed -e 's#provinceStateCode>.$##' -e 's#<##' -e '/^$/d' ; grep -P -o 'incorporationCertificateIdentifier(>.*<)' $inputhtml | sed -e 's#incorporationCertificateIdentifier>.$##' -e 's#<##' -e '/^$/d' ; grep -P -o 'postalZIPCode(>.*<)' $inputhtml | sed -e 's#postalZIPCode>.$##' -e 's#<##' -e '/^$/d' | uniq ; grep -P -o '(lastName|givenName|socialInsuranceNumber)(>.*<)' $inputhtml | sed -e 's#lastName>.$##' -e 's#givenName>.$##' -e 's#<##' -e 's#socialInsuranceNumber>.$##' -e 's#socialInsuranceNumber>$##' -e 's#<##' -e '/^$/d' 
+
+
+
+grep -P -o 'legalName(>.*<)' $inputhtml | sed -e 's#legalName>.$##' -e 's#<##' -e '/^$/d'; grep -P -o 'operatingName(>.*<)' $inputhtml | sed -e 's#operatingName>.$##' -e 's#<##' -e '/^$/d'; grep -P -o 'clientOwnershipTypeCode(>.*<)' $inputhtml | sed -e 's#<##' ; grep -P -o 'provinceStateCode(>.*<)' $inputhtml | sed -e 's#provinceStateCode>.$##' -e 's#<##' -e '/^$/d' ; grep -P -o 'incorporationCertificateIdentifier(>.*<)' $inputhtml | sed -e 's#incorporationCertificateIdentifier>.$##' -e 's#<##' -e '/^$/d' ; grep -P -o 'postalZIPCode(>.*<)' $inputhtml | sed -e 's#postalZIPCode>.$##' -e 's#<##' -e '/^$/d' | uniq ; grep -P -o '(lastName|givenName|socialInsuranceNumber)(>.*<)' $inputhtml | sed -e 's#lastName>.$##' -e 's#givenName>.$##' -e 's#<##' -e 's#socialInsuranceNumber>.$##' -e 's#socialInsuranceNumber>$##' -e 's#<##' -e '/^$/d' 
+
