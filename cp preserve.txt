@@ -1,0 +1,31 @@
+cp preserve
+You can preserve the timestamp of the original file when copying using cp by adding the -p or --preserve option:
+So to preserve only the timestamp
+
+cp --preserve=timestamps oldfile newfile
+or to preserve mode and ownership as well
+
+cp --preserve oldfile newfile
+or
+
+cp -p oldfile newfile
+
+
+
+Without -R, the cp command skips directories. 
+-r is identical with -R on Linux.
+
+By default, cp creates a new file which has the same content as the old file, and the same permissions but restricted by the umask; the copy is dated from the time of the copy, and belongs to the user doing the copy. 
+With the -p option, the copy has the same modification time, the same access time, and the same permissions as the original. It also has the same owner and group as the original, if the user doing the copy has the permission to create such files.
+
+The -a option means -R and -p
+
+
+recursive copying-
+cp -a (cp --archive) which additionally preserves symbolic links.
+
+
+cp -af
+
+
+

@@ -1,0 +1,37 @@
+awk field separator
+
+echo 12:34:56 | awk '{split($0,numbers,":")} END {for(n in numbers){ print numbers[n] }}'
+
+awk '{split($0,numbers,",")} ; {for(n in numbers){ print numbers[n] }}' importrxjs.txt
+
+
+
+cd C:/Weblogic
+
+awk '{split($0,fields,";")} ; {for(n in fields){ print fields[n] }}' "wl12.2 Console Output2018.txt" | awk 'NF > 0' | uniq > wl12.2_Console_Output2018_field_separate.txt
+
+awk '{split($0,fields,"-")} ; {for(n in fields){ print fields[n] }}' wl12.2_Console_Output2018_field_separate.txt > wl12.2_Console_Output2018_field_separate2.txt
+
+
+
+
+
+awk '{split($0,fields,";")} ; {for(n in fields){ print fields[n] }}' "output2b.txt" | awk 'NF > 0' | uniq > output2b_field_separate.txt
+
+awk '{split($0,fields,"-")} ; {for(n in fields){ print fields[n] }}' output2b_field_separate.txt > output2b_field_separate2.txt
+
+
+
+
+awk '{split($0,fields,";")} ; {for(n in fields){ print fields[n] }}' "output5b.txt" | awk 'NF > 0' | uniq > output5b_field_separate.txt
+
+awk '{split($0,fields,"-")} ; {for(n in fields){ print fields[n] }}' output5b_field_separate.txt > output5b_field_separate2.txt
+
+
+
+
+
+
+echo "hello world" | awk '{n=split($0, array, " ")} END {print n }'
+
+echo "bro-war/src/main/java/ca/gc/cra/brom/bro/common" | awk '{n=split($0, array, "/")} END {print n, array[n]}'

@@ -1,0 +1,77 @@
+cp -f C:/bash3/data/Restricted.txt C:/bash3/out/.
+
+
+
+use awk's output redirection. Awk output redirection is very easy to use in simple cases: the file is opened the first time a redirection is used, and subsequent redirections to the same file name use the existing file descriptor.
+
+If you wanted to add a suffix to the file name, it would be as easy as
+
+find -type f -iname "*.txt" -exec awk '{print $1, $2 >(FILENAME "-new")}' {} +
+
+
+
+   But you can make a more complex transformation on the file name (here recalculated only at the first line of each input file):
+
+find -type f -iname "*.txt" -exec awk '
+    FNR==1 {out=FILENAME; sub(/\.[^.]*$/, "-new&", out) || out = out "-new"}
+    {print $1, $2 >out}
+' {} +
+
+=
+
+You could try without find, if all you want is all the files. While in data/all/, run this:
+
+for file in ./*; do awk '{print$2}' "$file" > "../pos/$(basename $file)"; done
+
+If you want to cover the files in the whole hierarchy under /data/all, you can enable the globstar option if you are using bash (I believe this would "just work" on zsh) and then use ** to match all files:
+
+shopt -s globstar
+for file in ./**; do awk '{print$2}' "$file" > "../pos/$(basename $file)"; done
+
+=
+
+find . -type f -exec sh -c 'awk "{print \$2}" "{}" > "../pos/{}"' \;
+
+=
+
+cd C:/bash3/out/
+
+
+find -type f -iname "*.txt" -exec awk '{print $1, $2 >(FILENAME "-new")}' {} +
+
+find -type f . -exec awk -f C:/bash3/CaseTUSUM.awk > tmp_file && mv tmp_file +
+find -type f . -exec awk -f C:/bash3/CaseTUSUM.awk "{}" > tmp_file && mv tmp_file "{}" +
+find -type f -exec awk -f C:/bash3/CaseTUSUM.awk "{}" > tmp_file && mv tmp_file "{}" +
+
+find -type f . | awk -f C:/bash3/CaseTUSUM.awk "{}" > tmp_file && mv tmp_file "{}" +
+find -type f . | awk -f C:/bash3/CaseTUSUM.awk '{}' > tmp_file && mv tmp_file '{}' +
+find -type f | awk -f C:/bash3/CaseTUSUM.awk "{}" > tmp_file && mv tmp_file "{}" +
+find -type f | awk -f C:/bash3/CaseTUSUM.awk "{}" > tmp_file && mv tmp_file "{}" \;
+
+find -type f | awk -f C:/bash3/CaseTUSUM.awk '{}' > tmp_file && mv tmp_file '{}' +
+
+find -type f -exec awk '/import.*[Rr]estrictedServices.*;/ {
+   importbuf = importbuf $0 ORS
+   print; next
+}
+importbuf!="" {
+   gsub(/RestrictedServices/,"CaseTUSUM",importbuf)
+   gsub(/restrictedServices/,"caseTUSUM",importbuf)
+   printf "%s", importbuf
+   importbuf=""
+}
+
+/[Cc]lientRestrictedServices.*{/,/}/ {
+   buf = buf $0 ORS
+   if (/}/) {
+     print
+     gsub(/ClientRestrictedServices/,"CaseTUSUM",buf)
+     gsub(/clientRestrictedServices/,"caseTUSUM",buf)
+     gsub(/restrictedServices/,"caseTUSUM",buf)
+     printf "%s", buf
+     buf=""
+     next
+   }
+} { print }{ print >(FILENAME)}' {} +
+
+find -type f -exec awk '{print $0 >(FILENAME)}' {} +

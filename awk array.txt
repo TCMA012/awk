@@ -1,0 +1,7 @@
+awk array length
+
+When you split an array, the number of elements is returned:
+
+echo "hello world" | awk '{n=split($0, array, " ")} END {print n }'
+
+echo "bro-war/src/main/java/ca/gc/cra/brom/bro/common" | awk '{n=split($0, array, "/")} END {print n, array[n]}'

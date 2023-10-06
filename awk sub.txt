@@ -1,0 +1,41 @@
+awk sub
+awk =$0 sub 
+
+String=23skidoo1
+#      012345678    Bash
+#      123456789    awk
+# Note different string indexing system:
+# Bash numbers first character of string as 0.
+# Awk  numbers first character of string as 1.
+
+echo ${String:2:4} # position 3 (0-1-2), 4 characters long
+                                         # skid
+
+# The awk equivalent of ${string:pos:length} is substr(string,pos,length).
+echo | awk '
+{ print substr("'"${String}"'",3,4)      # skid
+}
+'
+
+
+
+awk 'BEGIN {
+   str = "Hello, World"
+   print "String before replacement = " str
+   
+   sub("World", "Jerry", str)
+   print "String after replacement = " str
+}'
+
+
+=
+
+echo This++++this+++is+not++done | awk '{gsub(/\++/," ");}1'
+
+The idiomatic awk solution would be just to translate the input field separator to the output separator:
+echo This++++this+++is+not++done | awk -F'++' '{$1=$1}1'
+
+=
+
+awk '{sub(/print /, "print \("); print}'
+

@@ -1,0 +1,51 @@
+bash filename ext
+
+cd C:/angularOther
+cd C:/angularOther/briebug
+
+#rename files with spaces to '_'
+for f in *\ *; do mv "$f" "${f// /_}"; done
+
+Broken down:
+*\ * selects all files with a space in their name as input for the the for loop. The pattern *X* selects all files with X in their name, and for the special character space, we have to escape it with a slash so that bash doesn't treat it as separating different arguments.
+The quotes around "$f" are important because we know there's a space in the filename and otherwise it would appear as 2+ arguments to mv.
+${f//str/new_str} is a bash-specific string substitution feature. All instances of str are replaced with new_str.
+
+
+
+#space in filename do not work 
+for file in *; do
+    echo mv $file $file.txt
+	mv $file $file.txt
+done
+
+
+
+
+# Rename all *.txt to *.text
+for file in *.txt; do
+    mv -- "$file" "${file%.txt}.text"
+done
+
+*.txt is a globbing pattern, using * as a wildcard to match any string. *.txt matches all filenames ending with '.txt'.
+
+-- marks the end of the option list. This avoids issues with filenames starting with hyphens.
+
+${file%.txt} is a parameter expansion, replaced by the value of the file variable with .txt removed from the end.
+
+
+
+#basename:
+for file in *.txt; do
+    mv -- "$file" "$(basename -- "$file" .txt).text"
+done
+
+
+
+
+cd C:/angularOther
+mkdir txt
+
+for file in *.txt; do
+    mv -- "$file" "txt/."
+done

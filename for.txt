@@ -1,0 +1,116 @@
+bash for in 
+bash array
+
+for element in Hydrogen Helium Lithium Beryllium
+do
+  echo "Element: $element"
+done
+
+for i in {0..3}
+do
+  echo "Number: $i"
+done
+
+{START..END..INCREMENT}
+for i in {0..20..5}
+do
+  echo "Number: $i"
+done
+
+for ((i = 0 ; i <= 10 ; i++)); do
+  echo "Counter: $i"
+done
+
+BOOKS=('In Search of Lost Time' 'Don Quixote' 'Ulysses' 'The Great Gatsby')
+for book in "${BOOKS[@]}"; do
+  echo "Book: $book"
+done
+
+
+
+break and continue Statements
+
+
+
+Renaming files with spaces in the filename
+rename all of the files in the current directory with a space in its names by replacing space to underscore:
+
+for file in *\ *; do
+  mv "$file" "${file// /_}"
+done
+
+
+
+Changing file extension
+rename all files ending with .jpeg in the current directory by replacing the file extension from .jpeg to .jpg.
+
+for file in *.jpeg; do
+    mv -- "$file" "${file%.jpeg}.jpg"
+done
+
+
+current directory
+
+app.component.html
+app.component.scss
+app.component.ts
+
+
+for file in *.html *.scss *.ts; do
+    echo "$file"
+done
+
+
+
+shopt -s globstar
+
+for file in ./**; do awk '{print$2}' "$file" > "../pos/$(basename $file)"; done
+
+
+
+for file in **/*.*
+do
+  echo "${file##*.}
+done
+
+
+for file in **/*.html *.scss *.ts; do
+  echo "$file"
+done
+
+for file in **/*.html **/*.scss **/*.ts; do
+  echo "$file"
+done
+
+
+for file in *.test; do
+    echo "$file"
+done
+
+
+for file in *.test; do
+    cat "$file"
+done
+
+
+for file in pom.xml **/pom.xml; do
+    echo "$file"
+	cp -a $file "${file} - Copy"
+done
+
+for dir in brom-mavenbro-*; do
+    echo "$dir"
+	echo "${dir/mavenbro/bro}"
+	mv "$dir" "${dir/mavenbro/bro}"
+done
+
+
+
+use ${var^^} to make a variable's contents upper case. 
+to avoid ending up in the new directory, run the loop in a subshell:
+targetPath="/path/to/dir"
+( cd -- "$targetPath" && 
+for f in *; do
+    mv -- "$f" "${f^^}"
+done
+)

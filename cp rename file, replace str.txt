@@ -1,0 +1,71 @@
+cp rename file, replace str
+
+C:\angularTypedForm\angular-large-typed-reactive-forms2\src\app
+cd C:/angularTypedForm/angular-large-typed-reactive-forms2/src/app
+
+C:\angularTypedForm\angular-large-typed-reactive-forms2\src\app\contact-subform
+C:\angularTypedForm\angular-large-typed-reactive-forms2\src\app\name-subform
+
+mkdir address-subform
+mkdir data
+
+
+cp C:/angularReactiveForms/nested-and-reusable-form/nested-reusable-form-master/src/app/provinces.ts data/.
+
+
+cd name-subform
+
+
+
+grep --exclude-dir=target -rl "name-subform" *
+
+
+for file in *; do
+	echo "$file"
+  	cp "$file" "../address-subform/${file//name/address}"
+done
+
+
+##  mv "$file" "${file// /_}"
+
+
+
+???
+#rename multiple files by replacing word in file name
+find . -type f -name "name*" -print0 | while read -r -d '' file; do
+	echo "$file"
+	cp "$file" "./address-subform/${file//name/address}"
+done
+##  cp "$file" "${file//name/address}"
+???
+
+
+
+g s
+
+
+
+cd ../address-subform
+
+
+find . -name "address*" -exec sed -i 's#firstName#province#g' '{}' +
+find . -name "address*" -exec sed -i 's#lastName#country#g;s#firstName#province#g' '{}' +
+
+
+
+
+#search for a string, duplicate original and replace the string
+
+grep -rli user.service.ts . --exclude-dir=.git | xargs sed -i 's#\(.*\)firstName\(.*\)#&\n\1province\2#'
+
+
+cd ..
+
+cp -f C:/angularTypedForm/angular-large-typed-reactive-forms-example-main/src/app/user.service.ts .
+
+
+countries.ts
+
+
+sed -i 's#\(.*\)lastName\(.*\)#&\n\1country\2#;s#\(.*\)firstName\(.*\)#&\n\1province\2#' user.service.ts 
+

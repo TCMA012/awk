@@ -1,0 +1,98 @@
+awk print logs
+C:\Users\txm076\domains\d-domain01\logs\application
+cd C:/Users/txm076/domains/d-domain01/logs/application
+
+grep -a "getPosnTitl" brom.bro.ejbcomponents.AdminServer.log
+grep -ai MASK brom.bro.ejbcomponents.AdminServer.log
+
+grep -Po 'OtherPartyHandlerBean - \K.*800389405.*' brom.bro.ejbcomponents.AdminServer.log | sort -u
+
+grep -Po 'OtherPartyHandlerBean - \K.*2023L329.*' brom.bro.ejbcomponents.AdminServer.log | sort -u
+
+
+
+awk 'NR >= 3183' brom.bro.ejbcomponents.AdminServer.log > brom.bro.ejbcomponents.AdminServer0516.log
+
+awk 'NR >= 18591' brts.v2.AdminServer_rest.log > brts.v2.AdminServer_restdebug.log
+
+awk 'NR >= 18208' brom.bro.AdminServer.log > ADR.01a.log
+
+awk 'NR >= 3139' brom.bro.AdminServer.log > YES3All.log
+
+awk 'NR >= 3319' brom.bro.AdminServer.log > NO3All.log
+
+
+
+awk 'NR >= 6459' brom.bro.AdminServer.log > YES4All.log
+
+awk 'NR >= 6704' brom.bro.AdminServer.log > NO4All.log
+
+
+
+awk 'NR >= 9931' brom.bro.AdminServer.log > YES5All.log
+
+awk 'NR >= 10119' brom.bro.AdminServer.log > NO5All.log
+
+
+awk 'NR >= 13385' brom.bro.AdminServer.log > YES6All.log
+
+awk 'NR >= 13575' brom.bro.AdminServer.log > NO6All.log
+
+
+awk 'NR >= 16810' brom.bro.AdminServer.log > YES7All.log
+
+awk 'NR >= 17000' brom.bro.AdminServer.log > NO7All.log
+
+
+awk '{for(i=7; i<=NF; i++) printf $i" "; printf "\n"}' brom.bro.AdminServerNO2.log
+awk '{for(i=8; i<=NF; i++) printf $i" "; printf "\n"}' brom.bro.AdminServerNO2.log
+awk '{for(i=9; i<=NF; i++) printf $i" "; printf "\n"}' brom.bro.AdminServerNO2.log > NO2.log 
+ 
+awk 'NF > 0 {for(i=9; i<=NF; i++) printf $i" "; printf "\n"}' brom.bro.AdminServerNO2.log > NO2.log 
+
+
+
+awk '{for(i=8; i<=NF; i++) printf $i" "; printf "\n"}' brom.bro.AdminServerYES.log
+
+awk 'NF > 0 {for(i=9; i<=NF; i++) printf $i" "; printf "\n"}' brom.bro.AdminServerYES.log > YES.log
+
+
+
+awk 'NF > 0 {for(i=9; i<=NF; i++) printf $i" "; printf "\n"}' YES3All.log > YES3.log 
+awk 'NF > 0 {for(i=9; i<=NF; i++) printf $i" "; printf "\n"}' NO3All.log > NO3.log 
+
+grep -a hasInvalidActionError YES3.log NO3.log
+
+
+
+awk 'NF > 0 {for(i=9; i<=NF; i++) printf $i" "; printf "\n"}' YES4All.log > YES4.log 
+awk 'NF > 0 {for(i=9; i<=NF; i++) printf $i" "; printf "\n"}' NO4All.log > NO4.log 
+
+
+awk 'NF > 0 {for(i=9; i<=NF; i++) printf $i" "; printf "\n"}' YES5All.log > YES5.log 
+awk 'NF > 0 {for(i=9; i<=NF; i++) printf $i" "; printf "\n"}' NO5All.log > NO5.log 
+
+awk 'NF > 0 {for(i=9; i<=NF; i++) printf $i" "; printf "\n"}' YES6All.log > YES6.log 
+awk 'NF > 0 {for(i=9; i<=NF; i++) printf $i" "; printf "\n"}' NO6All.log > NO6.log 
+
+awk 'NF > 0 {for(i=9; i<=NF; i++) printf $i" "; printf "\n"}' YES7All.log > YES7.log 
+awk 'NF > 0 {for(i=9; i<=NF; i++) printf $i" "; printf "\n"}' NO7All.log > NO7.log 
+
+
+
+grep -a "request.setAttribute(ADD_INVALID_ACTION_ERROR_KEY, request" brom.bro.AdminServer.log
+2022-02-02 14:21:23,888 [ bromrunas 17ebbc49be6] INFO  ca.gc.cra.brom.bro.web.interceptors.ActionFilterInterceptor - request.setAttribute(ADD_INVALID_ACTION_ERROR_KEY, request org.apache.struts2.dispatcher.StrutsRequestWrapper@aaa7a78
+2022-02-02 14:27:33,665 [ bromrunas 17ebbc49be6] INFO  ca.gc.cra.brom.bro.web.interceptors.ActionFilterInterceptor - request.setAttribute(ADD_INVALID_ACTION_ERROR_KEY, request org.apache.struts2.dispatcher.StrutsRequestWrapper@628684e2
+
+
+
+grep -a httpServletRequest_ADD_INVALID_ACTION_ERROR_KEY brom.bro.AdminServer.log
+2022-02-02 14:18:13,060 [ bromrunas 17ebbc49be6] INFO  ca.gc.cra.brom.bro.web.actions.lt.Lt01Action - httpServletRequest_ADD_INVALID_ACTION_ERROR_KEY null
+2022-02-02 14:18:17,284 [ bromrunas 17ebbc49be6] INFO  ca.gc.cra.brom.bro.web.actions.adr.Adr01MailingAction - httpServletRequest_ADD_INVALID_ACTION_ERROR_KEY null
+2022-02-02 14:18:22,622 [ bromrunas 17ebbc49be6] INFO  ca.gc.cra.brom.bro.web.actions.adr.Adr01MailingAction - httpServletRequest_ADD_INVALID_ACTION_ERROR_KEY null
+2022-02-02 14:18:25,919 [ bromrunas 17ebbc49be6] INFO  ca.gc.cra.brom.bro.web.actions.adr.Adr01MailingAction - httpServletRequest_ADD_INVALID_ACTION_ERROR_KEY null
+2022-02-02 14:18:29,396 [ bromrunas 17ebbc49be6] INFO  ca.gc.cra.brom.bro.web.actions.adr.Adr01MailingAction - httpServletRequest_ADD_INVALID_ACTION_ERROR_KEY null
+2022-02-02 14:18:36,289 [ bromrunas 17ebbc49be6] INFO  ca.gc.cra.brom.bro.web.actions.adr.Adr09MailingAction - httpServletRequest_ADD_INVALID_ACTION_ERROR_KEY null
+2022-02-02 14:21:24,045 [ bromrunas 17ebbc49be6] INFO  ca.gc.cra.brom.bro.web.actions.adr.Adr09MailingAction - httpServletRequest_ADD_INVALID_ACTION_ERROR_KEY true
+2022-02-02 14:23:04,480 [ bromrunas 17ebbc49be6] INFO  ca.gc.cra.brom.bro.web.actions.aep.Aep01Action - httpServletRequest_ADD_INVALID_ACTION_ERROR_KEY null
+2022-02-02 14:27:34,293 [ bromrunas 17ebbc49be6] INFO  ca.gc.cra.brom.bro.web.actions.aep.Aep01Action - httpServletRequest_ADD_INVALID_ACTION_ERROR_KEY null

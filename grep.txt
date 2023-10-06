@@ -1,62 +1,123 @@
-grep -P enables PCRE syntax. (This is a non-standard extension -- not even all builds of GNU grep support it, as it depends on the optional libpcre library, and whether to link this in is a compile-time option).
-grep -o emits only matched text, and not the entire line containing said text, in output. (This too is nonstandard, though more widely available than -P).
+grep -rnw '/path/to/somewhere/'-e 'pattern'
+-r or -R is recursive,
+-n is line number, and
+-w stands for match the whole word.
+-l (lower-case L) can be added to just give the file name of matching files.
+Along with these, 
+--exclude, --include, --exclude-dir 
+or ????? --include-dir flags:
 
-\K is a PCRE extension to regex syntax discarding content prior to that point from being included in match output.
-“keep” everything it had matched prior to the \K and not include it in matched string. This provides variable-length lookbehind of any length.
+This will only search through those files which have .c or .h extensions:
+
+grep --include=\*.{c,h} -rnw '/path/to/somewhere/' -e "pattern"
+
+This will exclude searching all the files ending with .o extension:
+
+grep --exclude=*.o -rnw '/path/to/somewhere/'-e "pattern"
+
+Just like exclude files, it's possible to exclude/include directories through 
+--exclude-dir
+
+ parameter. this will exclude the dirs dir1/, dir2/ and all of them matching *.dst/:
+grep --exclude-dir={dir1,dir2,*.dst}-rnw '/path/to/somewhere/'-e "pattern"
+
+grep --exclude-dir={build,target,.scannerwork,lib,yaml} -ril ClientInformationSearchRequest C:/git/partnerRest-dev-20231004/implementation
 
 
 
-cd C:/Users/txm076/domains/d-domain01/logs/application
 
-grep -Po 'OtherPartyHandlerBean - \K.*800389405.*' brom.bro.ejbcomponents.AdminServer.log | sort -u
+grep -Ril "text-to-find-here" /
+i stands for ignore case (optional in your case).
+R stands for recursive.
+l stands for "show the file name, not the result itself".
+/ stands for starting at the root of your machine.
 
-grep -Po 'OtherPartyHandlerBean - \K.*maskutfee.*' brom.bro.ejbcomponents.AdminServer.log | sort -u
+
+
+cp -f C:/bash3/data/Restricted.txt C:/bash3/out/.
+
+cat Restricted.txt
 
 
 
-cd C:/"@Test Page template R4-2022/@Test Page template/UT1_2023/SK4 ownerBN"
+grep -rl 7001 . --exclude-dir=.git | xargs sed -i -e 's/7001/1221/g'
 
-grep -Po 'get\K.*(?=\()' fields.txt
+grep --exclude-dir=target -r "Choose Environment" *
+
+
+grep pattern -r --include=\*.cpp --include=\*.h rootdir
+
+grep pattern -r --include=\*.cpp rootdir
+
+grep pattern -r --include=\*.{cpp,h} rootdir
+
+
+
+grep mockito -r --exclude-dir=target --include=pom.xml .
+
+
+
+
+
+grep RestrictedServices -rli C:/bash3/out | xargs awk -f C:/bash3/CaseTUSUM.awk 
+
+grep RestrictedServices -rli C:/bash3/out | xargs awk -f C:/bash3/CaseTUSUM.awk {} > tmp_file && mv tmp_file {}
+
+grep RestrictedServices -rli C:/bash3/out | xargs awk -f C:/bash3/CaseTUSUM.awk {} > tmp_file && mv tmp_file {} +
+
+grep RestrictedServices -rli C:/bash3/out | xargs awk -f C:/bash3/CaseTUSUM.awk "{}" > tmp_file && mv tmp_file "{}"
+
+grep RestrictedServices -rli C:/bash3/out | xargs awk -f C:/bash3/CaseTUSUM.awk '{}' > tmp_file && mv tmp_file '{}'
+
+
+
+
  
-OwnerSbrnRoot(i)800389405
-getRestartLstNm()  800389405
+grep -rli businessServices C:/bash3/out/* | xargs gawk -i inplace -f CaseTUSUM.awk
+ 
+grep -rli businessServices "C:/bash3/out/.*"
 
-
-echo "def\nabc" | grep -Po 'a\K.(?=c)'
-
-echo "def\nabc" | grep -o 'a.c'
-
-echo "abc" | grep -Po 'a.(?=c)' 
-
-echo "abc" | grep -Po 'a\K.(?=c)'
-
-echo "abc" | grep -Po 'a\K.*'
-
-echo "abcdef" | grep -Po 'a\K.*(?=ef)'
+cd C:/bash3/out/
 
 
 
-https://scripter.co/grep-po/
-string="web report: https://foo.bar/detail.html"
-substring=$(grep -Po 'web report:\s*\K.*?(?=/detail\.html)' <<< "${string}")
-echo "${substring}"
+grep -E 'xml|java' $FilesBro
+
+=
+
+ tail -f logfile | grep 'foo bar' | awk ... (with the actual AWK command being unspecified). There is no problem if we simply run tail -f logfile, because tail -f never buffers its output. Nor is there a problem if we run tail -f logfile | grep 'foo bar' interactively, because grep does not buffer its output if its standard output is a terminal. However, if the output of grep is being piped into something else (such as an AWK command), it starts buffering to improve efficiency.
+
+In this particular example, the grep is actually redundant. We can remove it, and have AWK perform the filtering in addition to whatever else it's doing:
+
+tail -f logfile | awk '/foo bar/ ...'
+
+=
+
+awk -f C:/bash3/CaseTUSUM.awk Restricted.txt > tmp_file && mv tmp_file Restricted.txt
+
+grep RestrictedServices -rli . | xargs -I {} awk -f C:/bash3/CaseTUSUM.awk {} > tmp_file && mv tmp_file {}
+
+grep RestrictedServices -rli . | xargs -I {} awk -f C:/bash3/CaseTUSUM.awk "{}" > tmp_file && mv tmp_file "{}"
+
+? grep RestrictedServices -rli . | xargs -i {} awk -f C:/bash3/CaseTUSUM.awk '{}' > tmp_file && mv tmp_file '{}'
 
 
+grep xargs awk
 
-LookAhead also allows you to remove part of the matching text from a capture group.  Consider an example where we do need the final child path to end with “/data”, but are only interested in pulling back the base directory.
+grep xargs {}
 
-# the value must end with "/data" to match,
-# but we only want the base directory location output
-$ grep -Po "<paths?\>\K[^<]+(?=/data)" test.xml
-/my
-/global
+find awk {}
+
+find . | awk -f C:/bash3/CaseTUSUM.awk {} > tmp_file && mv tmp_file {}
+
+=
+
+If you have an improved version of grep, such as GNU grep, you may have the -P option available. This option will enable Perl-like regex, allowing you to use \K which is a shorthand lookbehind. It will reset the match position, so anything before it is zero-width.
+
+grep -Po 'name="\K.*?(?=")' filename
+
+The o option makes grep print only the matched text, instead of the whole line.
+
+grep -Po 'Serious Application error calling the (.*)desc:(.*)' 
 
 
-
-The \K is the short-form (and more efficient form) of (?<=pattern) which you use as a zero-width look-behind assertion before the text you want to output. (?=pattern) can be used as a zero-width look-ahead assertion after the text you want to output.
-For instance, if you wanted to match the word between foo and bar, you could use:
-
-$ grep -oP 'foo \K\w+(?= bar)' test.txt
-or (for symmetry)
-
-$ grep -oP '(?<=foo )\w+(?= bar)' test.txt

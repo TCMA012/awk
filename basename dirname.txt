@@ -1,0 +1,149 @@
+bash basename dirname
+find basename dirname
+find iname basename dirname
+
+basename a/b/c
+dirname a/b/c
+
+
+
+some_path=a/b/c
+echo $(basename $some_path)
+echo $(basename $(dirname $some_path))
+echo $(basename $(dirname $(dirname $some_path)))
+echo $(dirname $some_path)
+
+does not work with paths that have spaces... you can overcome that with quotes... which somehow works echo "$(basename "$(dirname "$pathname")")"
+
+
+
+basename /path/to/file.tar.gz .gz – Strip directory and suffix from filenames
+${VAR%pattern} – Remove file extension. Bash’s parameter substitution
+${VAR#pattern} – Delete from shortest front pattern
+
+FILE="/home/vivek/lighttpd.tar.gz"
+echo ${FILE##*/}
+echo "${FILE#*.}"     # print tar.gz
+echo "${FILE##*.}"    # print gz
+ext="${FILE#*.}"      # store output in a shell variable 
+echo "$FILE has $ext" # display it
+
+url="https://www.cyberciti.biz/files/mastering-vi-vim.pdf"
+echo "${url##*/}"
+
+=
+
+"The -execdir primary is identical to the -exec primary with the exception that utility will be executed from the directory that holds the current file. The filename substituted for the string ``{}'' is not qualified."
+
+find /home/mine -iname "*.png" -execdir cp {} /home/mine/pngcoppies/copy{} \;
+
+find /home/mine -iname "*.png" -exec sh -c 'cp $0 /home/mine/pngcoppies/copy/$0' {} \;
+
+=
+
+for file in *.gif;do
+    #exit if there are no files
+    if [! -f $file];then
+        exit
+    fi
+    b='basename $file'
+    echo NOW $b.gif is $b.png
+    giftopnm $b.gif | pnmtopng >$b.png
+done
+
+=
+
+for path in `find /home/you -type f -size +100000c -print` do cd `dirname $path` || exit filename=`basename $path` split $filename $filename. mv -i $filename huge.$filename done docstore.mik.ua/orelly/unix2.1/upt/ch45_18.htm
+
+=
+
+find -iname "*.txt" -exec sh -c 'for f do basename -- "$f" .txt;done' sh {} +
+
+=
+
+INPUT="/tmp/dir/target"
+echo ${INPUT##*/}                
+target
+
+sed 's#.*/##' <<< "/tmp/dir/target"
+target
+
+awk -F'/' '{print $NF}' <<< "/tmp/dir/target"             
+target
+
+grep -o '[^/]*$' <<< "/tmp/dir/target" 
+target
+
+
+
+a directory path string often ends with a slash, such as “/tmp/dir/target/“.
+awk -F'/' '{ a = length($NF) ? $NF : $(NF-1); print a }' <<< "/tmp/dir/target"
+target
+
+awk -F'/' '{ a = length($NF) ? $NF : $(NF-1); print a }' <<< "/tmp/dir/target/"
+target
+
+=
+
+
+
+The $0 will provide full path for currently running script. To extract that name only:
+
+#!/bin/bash
+_self="${0##*/}"
+echo "$_self is called"
+ 
+## or in usage() ##
+usage(){
+    echo "$_self: arg1 arg2"
+}
+
+
+
+The ## tries to find the longest matching expansion of the prefix pattern:
+
+x=/a/b/c/d
+echo ${x##*/}
+
+d
+
+basename $x
+d
+
+From the man page:
+
+${parameter##word}
+       Remove matching prefix pattern.  The word is expanded to produce
+       a pattern just as in pathname expansion.  If the pattern matches
+       the  beginning of the value of parameter, then the result of the
+       expansion is the expanded value of parameter with  the  shortest
+       matching  pattern  (the ``#'' case) or the longest matching pat‐
+       tern (the ``##'' case) deleted.  
+	   
+	   
+	  
+fileNameWithFullPath="${fileNameWithFullPath%/}";
+echo "${fileNameWithFullPath##*/}" # print the file name
+
+
+
+
+filename=/some/long/path/to/a_file
+
+parentdir_v1="${filename%/*}"
+parentdir_v2="$(dirname "$filename")"
+
+basename_v1="${filename##*/}"
+basename_v2="$(basename "$filename")"
+
+echo "$parentdir_v1"
+echo "$parentdir_v2"
+echo "$basename_v1"
+echo "$basename_v2"
+
+/some/long/path/to
+/some/long/path/to
+a_file
+a_file
+
+(v1 uses shell parameter expansion, v2 uses external binaries.)

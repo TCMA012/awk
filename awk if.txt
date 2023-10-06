@@ -1,0 +1,16 @@
+awk '{
+if ($3 =="" || $4 == "" || $5 == "")
+	print "Some score for the student",$1,"is missing";'
+}'
+
+
+awk '{
+if ($3 >=35 && $4 >= 35 && $5 >= 35)
+	print $0,"=>","Pass";
+else
+	print $0,"=>","Fail";
+}'
+
+
+
+awk '{if ($0 !~ /pattern/) {print}; END {print "someText"}}' file
