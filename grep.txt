@@ -21,8 +21,7 @@ Just like exclude files, it's possible to exclude/include directories through
  parameter. this will exclude the dirs dir1/, dir2/ and all of them matching *.dst/:
 grep --exclude-dir={dir1,dir2,*.dst}-rnw '/path/to/somewhere/'-e "pattern"
 
-grep --exclude-dir={build,target,.scannerwork,lib,yaml} -ril ClientInformationSearchRequest C:/git/partnerRest-dev-20231004/implementation
-
+grep --exclude-dir={build,target,.git,.scannerwork,lib,yaml,_supporting_docs_and_misc} --include=\*.java -rl Optional C:/git/partnerRest-dev-20231004/implementation
 
 
 
