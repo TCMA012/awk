@@ -1,0 +1,3 @@
+diff files ignoring white space
+-w effectively removes all whitespace from the lines before comparing, so ab and a b are considered identical. 
+I prefer -b because it ignores whitespace changes, meaning that ab and a b are considered different but a b and a + multiple spaces + b (sorry, mini-Markdown wouldn't allow multiple spaces in code!) are considered the same.

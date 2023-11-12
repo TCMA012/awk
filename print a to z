@@ -1,0 +1,3 @@
+#print a to z
+printf '%s\n' {a..z}
+printf '%s' {a..z}
