@@ -1,0 +1,5 @@
+bash variable while read sed
+
+while IFS= read -r line; do
+  sed -e 's#${line}#test#' f2.txt
+done < f1.txt
