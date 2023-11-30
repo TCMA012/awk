@@ -1,1 +1,55 @@
+https://stackoverflow.com/questions/77575363/read-one-text-file-line-by-line-for-each-line-substitute-another-text-file-wit
+
+Read one text file line by line, for each line, substitute another text file with all the uppercase string of the line just read
+e.g.
+Read f1.txt line by line, for each line L, substitute f2.txt with all the uppercase string of L.
+
+f1.txt
+```
+sone
+stwo
+```
+
+f2.txt
+
+```
+st
+ sone
+  stwo
+so
+```
+
+
+desired output:
+
+```
+st
+ SONE
+  STWO
+so
+```
+
+
+I tried:
+```
+while IFS= read -r line; do
+  sed -e 's/\(.*\)/\U\1/' f2.txt
+done < f1.txt
+```
+awk sed bash 
+
+
+
+? text-files
+
+
+cdm
+cd awk/read
+
+
+bash --version
+GNU bash, version 5.0.17(1)-release (x86_64-pc-linux-gnu)
+
+
+
 

@@ -1,0 +1,12 @@
+# load strings into an array
+mapfile -t a <f1.txt
+
+# load file as a string (single array element)
+mapfile -d '' b <f2.txt
+
+# do substitutions
+for s in "${a[@]}"; do b=${b//"$s"/"${s^^}"}; done
+
+# output the result
+printf '%s' "$b" >new_f2.txt
+
