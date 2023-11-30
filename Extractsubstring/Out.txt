@@ -1,0 +1,10 @@
+public static final String LEGALNAME = "legalName";
+public static final String OPERATINGNAME = "operatingName";
+{
+	put(LEGALNAME, LEGALNAME);
+	put(OPERATINGNAME, OPERATINGNAME);
+	for(int i = 0; i < 3; i++) {
+		put("givenName["+ i + "]", "givenName[" + (i+1) + "]");
+		put("lastName["+ i + "]", "lastName[" + (i+1) + "]");
+	}	
+}
