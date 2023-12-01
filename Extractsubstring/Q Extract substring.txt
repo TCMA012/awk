@@ -1,3 +1,50 @@
-awk Extract substring delimiter
+https://stackoverflow.com/questions/77582584/parse-a-text-file-extract-a-string-delimited-by-create-insert-and-substitut
+Parse a text file, extract a string delimited by ", create, insert and substitute the new string
 
-awk -F'"' '{if ($2 != "" && $2 !~ /\[/) {print "public static final String " toupper($2), "= \"" $2 "\";"};}' In.txt
+Parse a text file, extract a string S1 delimited by ", create a new string S2 from the extracted string S1, insert S2 at the top of the text file, substitute the extracted string S1 with the new string S2.
+
+e.g.
+```
+S1: 
+s
+S2: 
+public static final String (convert S1 to all uppercase) = "s";
+i.e.
+public static final String S = "s";
+```
+e.g.
+In.txt:
+```
+{
+	put("legalName", "legalName");
+	put("operName", "operName");
+	for(int i = 0; i < 3; i++) {
+		put("firstName["+ i + "]", "firstName[" + (i+1) + "]");
+		put("lastName["+ i + "]", "lastName[" + (i+1) + "]");
+	}	
+}
+```
+Out.txt (desired output):
+```
+public static final String LEGALNAME = "legalName";
+public static final String OPERNAME = "operName";
+{
+	put(LEGALNAME, LEGALNAME);
+	put(OPERNAME, OPERNAME);
+	for(int i = 0; i < 3; i++) {
+		put("firstName["+ i + "]", "firstName[" + (i+1) + "]");
+		put("lastName["+ i + "]", "lastName[" + (i+1) + "]");
+	}	
+}
+```
+I tried:
+```
+awk -F'"' '
+{if ($2 != "" && $2 !~ /\[/) 
+{print "public static final String " toupper($2), "= \"" $2 "\";"};}' In.txt
+```
+
+
+cdm
+cd awk/Extractsubstring
+
