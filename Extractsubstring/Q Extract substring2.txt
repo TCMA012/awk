@@ -1,0 +1,80 @@
+https://stackoverflow.com/questions/77582584/parse-a-text-file-extract-a-string-delimited-by-create-insert-and-substitut
+Parse a text file, extract a string delimited by ", create, insert and substitute the new string
+
+Parse a text file, extract a string S1 delimited by ", create a new string S2 from the extracted string S1, insert S2 at the top of the text file, substitute the extracted string S1 with the new string S2.
+
+e.g.
+```
+S1: 
+s
+S2: 
+public static final String (convert S1 to all uppercase) = "s";
+i.e.
+public static final String S = "s";
+```
+e.g.
+In.txt:
+```
+{
+	put("legalName", "legalName");
+	put("operName", "operName");
+	for(int i = 0; i < 3; i++) {
+		put("firstName["+ i + "]", "firstName[" + (i+1) + "]");
+		put("lastName["+ i + "]", "lastName[" + (i+1) + "]");
+	}	
+}
+```
+Out.txt (desired output):
+```
+public static final String LEGALNAME = "legalName";
+public static final String OPERNAME = "operName";
+{
+	put(LEGALNAME, LEGALNAME);
+	put(OPERNAME, OPERNAME);
+	for(int i = 0; i < 3; i++) {
+		put("firstName["+ i + "]", "firstName[" + (i+1) + "]");
+		put("lastName["+ i + "]", "lastName[" + (i+1) + "]");
+	}	
+}
+```
+I tried:
+```
+awk -F'"' '
+{if ($2 != "" && $2 !~ /\[/) 
+{print "public static final String " toupper($2), "= \"" $2 "\";"};}' In.txt
+```
+
+
+
+cdm
+cd awk/Extractsubstring
+
+
+
+
+do it with a 2-pass approach using any POSIX awk:
+
+awk -f tst.awk In.txt In.txt
+awk -f tst2.awk In.txt In.txt
+awk -f tst2ok.awk In.txt In.txt
+
+awk -f tst2.awk In2.txt In2.txt 
+
+awk -f tst2.awk In.txt In.txt > O.txt
+
+
+
+diff -w O.txt Out.txt
+
+diff Out.txt Out.txt
+
+
+
+
+sed -Ez ':a;s/(.*)"(\w+)", "\2"/public static final String \U\2\E = "\2";\n\1\U\2, \2/;ta' In.txt
+
+
+
+Regarding /"[[:alpha:]_][[:alnum:]_]*"/, I'm assuming the strings you want to match look like valid C (and many other languages) symbols and so start with a letter or underscore optionally followed by letters, underscores or digits. If that's the wrong assumption then change that regexp.
+
+Regarding appending to locs[FNR] and visiting each locs[FNR]s contents with for ( i=n; i>1; i-- ) { - it doesn't matter in this case but it's usually important in such applications to replace strings starting from the end of the line rather than from the start of the line because if the new string length can be different from the original and you replaced from the start of the line then the saved strBeg values would be wrong after the first replacement.
