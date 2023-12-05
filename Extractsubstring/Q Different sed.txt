@@ -1,0 +1,2 @@
+sed -Ez ':a;s/(.*)"(\w+)"/public static final String \U\1\E = "\1";\n\1/;ta' InDifferent.txt
+
