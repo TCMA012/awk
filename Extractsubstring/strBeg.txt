@@ -1,0 +1,12 @@
+Then best I can tell you'd just 
+change strBeg-1 to strBeg and 
+strBeg+strLen to strBeg+strLen-1 in 
+$0 = substr($0,1,strBeg-1) map[string] substr($0,strBeg+strLen)
+ to consume those extra "s. If that's not exactly right then just adjust those numbers by 1 a couple of times til it is.
+ 
+I changed strBeg-1 to strBeg and 
+strBeg+strLen to strBeg+strLen-1 in 
+$0 = substr($0,1,strBeg-1) map[string] substr($0,strBeg+strLen)
+as per your comments, but that's not exactly right.
+Then I changed strBeg-1 to strBeg+1 and 
+strBeg+strLen to strBeg+strLen-1, but that's not exactly right.
