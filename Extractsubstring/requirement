@@ -1,0 +1,37 @@
+A new requirement is:
+How to modify the awk and sed scripts if S1 may contain a "."?
+If S1 is a word, S1up = uppercase(S1)
+If S1 is a word and a ".", then S1new = substitute the "." in S1 with "_",  S1up = uppercase(S1new)
+e.g.
+input:
+```    
+    {
+	    put("str", "the.end");
+    }
+```
+output:
+```
+    public static final String STR = "str";
+    public static final String THE_END = "the.end";
+    {
+	    put(STR, THE_END);
+    }
+```  
+
+
+A new requirement is: How to modify the awk and sed scripts if S1 may contain a "."?
+If S1 is a word, S1up = uppercase(S1)
+If S1 is a word and a ".", then S1new = substitute the "." in S1 with "_",  S1up = uppercase(S1new)
+e.g.
+input:
+`    {
+	    put("str", "the.end");
+    }
+`
+output:
+`    public static final String STR = "str";
+    public static final String THE_END = "the.end";
+    {
+	    put(STR, THE_END);
+    }
+`

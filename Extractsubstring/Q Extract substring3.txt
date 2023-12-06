@@ -1,0 +1,90 @@
+I modified Ed Morton's awk script below as tst2.awk, which the actual output is getting close to the desired output but still did not get the desired output.
+tst2.awk
+```
+NR == FNR {
+	arr[NR]=$0; 
+    tailBeg = 1
+    while ( match(substr($0,tailBeg),/"[[:alpha:]_][[:alnum:]_]*"/) ) {
+        strBeg = tailBeg + RSTART
+        strLen = RLENGTH - 2
+        string = substr($0,strBeg,strLen)
+        strings[string]
+        locs[FNR] = locs[FNR] RS strBeg " " strLen
+        tailBeg += (RSTART + RLENGTH - 1)
+    }
+    next
+}
+FNR == 1 {
+    for ( string in strings ) {
+        map[string] = toupper(string)
+        printf "public static final String %s = \"%s\";\n", map[string], string
+	}
+	for (i = 1; i <= length(arr); i++) {
+		for ( string in strings ) {
+			map[string] = toupper(string)
+			text = arr[i]
+			gsub("\""string"\"", map[string], text)
+		}
+		printf "%s\n", text
+	}
+}
+```
+```
+awk -f tst2.awk In.txt In.txt > Out2.txt
+```
+The actual output Out2.txt is slightly different from the desired output Out.txt.
+
+
+Out2.txt
+```
+public static final String LEGALNAME = "legalName";
+public static final String OPERNAME = "operName";
+{
+	put("legalName", "legalName");
+	put(OPERNAME, OPERNAME);
+	for(int i = 0; i < 3; i++) {
+		put("firstName["+ i + "]", "firstName[" + (i+1) + "]");
+		put("lastName["+ i + "]", "lastName[" + (i+1) + "]");
+	}	
+}
+```
+
+
+
+Isaac Newton: If I have seen further than others, it is by standing upon the shoulders of giants.
+
+
+
+
+
+@ Ed Morton
+I am sorry that I had not checked the output carefully.
+There is a small difference between the desired output and actual output.
+There are no delimiter " around the uppercase string in the put operation.
+
+
+awk -f tst3.awk In.txt In.txt
+
+awk -f tst2.awk In2.txt In2.txt 
+awk -f tst2.awk In3.txt In3.txt 
+
+awk -f tstnew.awk In.txt In.txt
+
+
+@ potong, your sed script works! Would you mind explaining it?
+sed \U
+sed -Ez ':a;s/(.*)"(\w+)", "\2"/public static final String \U\2\E = "\2";\n\1\U\2, \2/;ta' In.txt
+
+sed -Ez ':a;s/(.*)"(\w+)", "\2"/public static final String \U\2\E = "\2";\n\1\U\2, \2/;ta' In2.txt
+
+sed -Ez ':a;s/(.*)"(\w+)", "\2"/public static final String \U\2\E = "\2";\n\1\U\2, \2/;ta' In3.txt
+
+@ potong, your script use the first \U converts the rest of the replacement to uppercase, or until \L or \E occurs.
+What is the second \U for? Why there is no \L or \E after it?
+
+
+reading the file backwards
+
+tac In.txt | awk -f reading_the_file_backwards.awk | tac
+
+@Ed Morton, both awk scripts work! Thank you!!!
