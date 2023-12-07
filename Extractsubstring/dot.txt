@@ -1,0 +1,2 @@
+awk -f dot.awk InDifferentDot.txt InDifferentDot.txt
+
