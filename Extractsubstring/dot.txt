@@ -1,2 +1,20 @@
+cd C:/SonarQube/partnerRest/awk/Extractsubstring
+
 awk -f dot.awk InDifferentDot.txt InDifferentDot.txt
 
+
+
+cd C:/git/partnerRest-dev-20231023/implementation/src/ca/gc/cra/brom/partner/common
+
+awk -f C:/SonarQube/partnerRest/awk/Extractsubstring/dot.awk FieldsConstant.java FieldsConstant.java > FieldsConstant.java_dot
+
+grep "public static final String" FieldsConstant.java_dot > FieldsConstant.java_dot_final
+
+grep -v "public static final String" FieldsConstant.java_dot > FieldsConstant.java_dot_final-v
+
+
+
+sort -u FieldsConstant.java_dot_final > FieldsConstant.java_dot_final_sort
+
+
+cat FieldsConstant.java_dot_final_sort FieldsConstant.java_dot_final-v > FieldsConstant.java_dot2
