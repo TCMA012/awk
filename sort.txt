@@ -1,3 +1,22 @@
+sort all.txt 
+
+sort can do natural or numeric sorting. So 100 10 and 20 can be correctly sorted using -g or -h on the sort.
+
+sort -g all.txt > allnumeric.txt
+
+sort -h all.txt 
+
+
+
+
+LC_COLLATE=C sort all.txt
+env LC_COLLATE=C sort all.txt
+
+LC_COLLATE=en_US.utf8 sort all.txt
+
+
+
+
 sort -t, -nk3 user.csv
 
 where
