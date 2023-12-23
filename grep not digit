@@ -1,0 +1,16 @@
+grep not digit
+
+?
+grep '[^0-9]+ FAILED' outFAILED.txt
+
+?
+
+grep '[^0-9] FAILED' outFAILED.txt
+grep '[^0-9] FAILED' outFAILED.txt
+
+grep '[^0-9]* FAILED' outFAILED.txt
+
+
+
+grep [^0-9]
+

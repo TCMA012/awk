@@ -1,0 +1,44 @@
+grep not character
+
+escape parenthesis in grep
+If you use regular grep, you don't escape:
+echo '(foo)' | grep '(fo*)'
+
+You actually have to escape if you want to use the parentheses as grouping.
+
+If you use extended regular expressions, you do escape:
+
+echo '(foo)' | grep -E '\(fo*\)'
+
+
+
+escape a close-bracket character inside a character class
+
+How do I escape a close-bracket character inside a character class?
+
+A ] is normally either the end of a POSIX character class, or it signals the end of the character class.
+
+If a ] is the first character in the class (may follow an unescaped caret) it does not denote the end of the class and is evaluated as part of the set of characters that can be matched without escaping.
+
+echo "foo [22-Jun-2014 04:11:37 UTC] bar" | grep -o '\[[^]]*\]'
+
+# [22-Jun-2014 04:11:37 UTC]
+
+
+
+ 
+grep not parensis character
+grep not bracket character
+
+grep ' FAILED[^)]' outFAILED.txt > outFAILED2.txt
+
+
+grep -E ' FAILED[^)]' outFAILED.txt
+grep -E 'FAILED[^)]' outFAILED.txt
+
+
+grep character not followed by character
+match 'b' followed by a character which is not 'e', or 'b' at end-of-line
+grep -E 'b([^e]|$)' filename
+
+

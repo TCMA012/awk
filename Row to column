@@ -15,6 +15,7 @@ awk '{for (i=1;i<=NF;i++) print $i}' file1 # portable version
 
 awk column to row
 awk '{printf "%s" (NR%3==0?RS:FS),$1}' file2
+awk '{printf "%s" (NR%10==0?RS:FS),$1}' allnumeric.txt
 
 
 printf "%s" # print pararameter #1 ($1)
