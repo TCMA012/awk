@@ -39,3 +39,8 @@ echo This++++this+++is+not++done | awk -F'++' '{$1=$1}1'
 
 awk '{sub(/print /, "print \("); print}'
 
+
+    sub first field
+awk '{ sub(/.*/, "grep -r ", $1) }1' 
+awk '{ sub(/.*/, "grep -r \"", $1); sub(/$/, "\"", $0) ; sub(/" /, "\"", $0)}1'
+

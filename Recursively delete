@@ -1,2 +1,4 @@
 Recursively delete all files with a given extension
 find . -type f -name '*.zip' -delete
+find . -type f -name 'main.ts' -delete
+

@@ -1,3 +1,63 @@
 diff files ignoring white space
 -w effectively removes all whitespace from the lines before comparing, so ab and a b are considered identical. 
 I prefer -b because it ignores whitespace changes, meaning that ab and a b are considered different but a b and a + multiple spaces + b (sorry, mini-Markdown wouldn't allow multiple spaces in code!) are considered the same.
+
+
+
+a recursive directory diff but only for a specific file type
+the exclude option
+diff /destination/dir/1 /destination/dir/2 -r -x *.xml
+
+specify -x more than once.
+diff -x '*.foo' -x '*.bar' -x '*.baz' /destination/dir/1 /destination/dir/2
+
+?
+diff -qr -x '*.ts' rxjs_in_x_lessons-main/src/ rxjs_in_x_lessons-dev/demo6/src
+diff -qr -x *.ts rxjs_in_x_lessons-main/src rxjs_in_x_lessons-dev/demo6/src
+
+diff -r -x *.ts rxjs_in_x_lessons-main/src rxjs_in_x_lessons-dev/demo6/src
+diff -r -x "*.ts" rxjs_in_x_lessons-main/src rxjs_in_x_lessons-dev/demo6/src
+?
+
+
+Only include files that match a given pattern in a recursive diff
+a recursive diff of the files in two directories (a and b):
+
+$ diff -r a b
+
+but only look at files whose name matches a given pattern. For example, using the same syntax available in the find command, this would look like:
+
+$ diff -r a b -name "*crazy*"
+
+which would show diffs between files with the same name and path in a and b, which have "crazy" in their name.
+
+Effectively, I'm looking for the opposite of the --exclude option which is available in diff.
+
+
+
+You can use find to get a list of files that don't match the pattern, and then "exclude" all those files:
+
+find a b -type f ! -name 'crazy' -printf '%f\n' | diff -r a b -X -
+
+The -X - will make diff read the patterns from stdin and exclude anything that matches. This should work provided your files don't have funny chars like * or ? in their names. The only downside is that your diff won't include the find command, so the listed diff command is not that useful.
+
+Since only non-GNU find doesn't have -printf, sed could be used as an alternative:
+
+find a b -type f ! -name '*crazy*' -print | sed -e 's|.*/||' | diff -X - -r a b
+
+
+
+?
+find rxjs_in_x_lessons-main/src rxjs_in_x_lessons-dev/demo6/src -type f ! -name '.ts' -printf '%f\n' | diff -r rxjs_in_x_lessons-main/src/ rxjs_in_x_lessons-dev/demo6/src -X -
+
+?
+
+
+
+find rxjs_in_x_lessons-main/src/ rxjs_in_x_lessons-dev/demo6/src -type f -name 'main.ts'
+
+
+find rxjs_in_x_lessons-main/src rxjs_in_x_lessons-dev/demo6/src -type f ! -name '*.ts' -print | sed -e 's|.*/||' | diff -X - -r rxjs_in_x_lessons-main/src rxjs_in_x_lessons-dev/demo6/src
+
+
+

@@ -1,3 +1,5 @@
+bash Shell Parameter Expansion
+www.gnu.org/software/bash/manual/html_node/Shell-Parameter-Expansion.html
 bash basename dirname
 find basename dirname
 find iname basename dirname
@@ -147,3 +149,38 @@ a_file
 a_file
 
 (v1 uses shell parameter expansion, v2 uses external binaries.)
+
+
+
+
+filename=$(basename -- "$fullfile")
+extension="${filename##*.}"
+filename="${filename%.*}"
+
+Alternatively, you can focus on the last '/' of the path instead of the '.' which should work even if you have unpredictable file extensions:
+
+filename="${fullfile##*/}"
+
+
+
+
+    Remove the shortest matching prefix pattern: {variable#pattern}
+    Remove the longest matching prefix pattern: ${variable##pattern}
+    Remove the shortest matching suffix pattern: ${variable%pattern}
+    Remove the longest matching suffix pattern: ${variable%%pattern} 
+
+
+
+FILE="example.tar.gz"
+
+~% echo "${FILE%%.*}"
+example
+
+~% echo "${FILE%.*}"
+example.tar
+
+~% echo "${FILE#*.}"
+tar.gz
+
+~% echo "${FILE##*.}"
+gz

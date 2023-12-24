@@ -1,0 +1,9 @@
+awk use the match function to capture parenthesized groups.
+
+gawk 'match($0, pattern, ary) {print ary[1]}' 
+
+example:
+
+echo "abcdef" | gawk 'match($0, /b(.*)e/, a) {print a[1]}' 
+
+outputs cd. 

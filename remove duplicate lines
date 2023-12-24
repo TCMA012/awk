@@ -1,0 +1,3 @@
+awk remove duplicate lines
+awk '!a[$0]++'
+
